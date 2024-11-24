@@ -1,0 +1,848 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documento-visao/documento-visao/">
+      
+      
+        <link rel="next" href="../../documento-arquitetura/documento-arquitetura/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Documento de Requisitos - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requisitos-do-projeto-grupo-4-fehu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentação" class="md-header__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação" class="md-nav__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instruções mkdocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/documento-visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projeto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descricao-dos-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição dos requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrição dos requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos funcionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos não-funcionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultados Esperados
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-plano-testes/documento-plano-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 21/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-24-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 24/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projeto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descricao-dos-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição dos requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descrição dos requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos funcionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos não-funcionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultados-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultados Esperados
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="requisitos-do-projeto-grupo-4-fehu">Requisitos do projeto - Grupo 4 (Fehu)</h1>
+<h2 id="projeto"><strong>Projeto</strong></h2>
+<p>Sistema de Gerenciamento de produção para empresa de bolo fake.</p>
+<h2 id="problema"><strong>Problema</strong></h2>
+<p>A empresa necessita de um sistema que cadastre as demandas de bolo fake que precisam ser feitas no dia.</p>
+<h2 id="contexto"><strong>Contexto</strong></h2>
+<p>O projeto será desenvolvido para a empresa “Catavento Festa dos Sonhos”, especializada em bolos fake.</p>
+<p>A empresa produz de 180 a 200 bolos por dia, das 8h às 18h. O processo de produção de bolos fake envolve, principalmente, três departamentos: cobertura; aplique; e montagem.</p>
+<p>A dificuldade relatada se refere ao gerenciamento de cada etapa da produção entre os departamentos.</p>
+<h2 id="descricao-dos-requisitos"><strong>Descrição dos requisitos</strong></h2>
+<h3 id="requisitos-funcionais">Requisitos funcionais</h3>
+<p>Requisitos funcionais descrevem as funcionalidades e as ações que um sistema ou produto deve ser capaz de executar. Eles detalham as tarefas específicas que este produto deve realizar para atender às necessidades do usuário.</p>
+<p>Seguem, na tabela a seguir, os requisitos funcionais do projeto:</p>
+<table>
+<thead>
+<tr>
+<th><strong>RF01</strong></th>
+<th>O sistema deverá considerar dois tipos de perfil de usuário: o funcionário de um departamento e o administrador do sistema.</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RF02</strong></td>
+<td>Somente o administrador deverá ser capaz de cadastrar a conta de um usuário no sistema.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF03</strong></td>
+<td>A conta de usuário deverá apresentar: nome; e-mail; senha; e departamento.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF04</strong></td>
+<td>O usuário deverá ser capaz de entrar e sair de sua conta no sistema.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF05</strong></td>
+<td>O sistema deverá ser capaz de produzir uma lista única de pedidos de bolos fake.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF06</strong></td>
+<td>Cada item da lista deverá possuir: código de identificação único do produto; imagem do produto; data do pedido; prazo para entrega; descrição do produto, com especificação de cores; e as atividades relacionadas a cada departamento.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF07</strong></td>
+<td>Somente o administrador deverá ser capaz de visualizar todos os itens da lista.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF08</strong></td>
+<td>O administrador deverá ser capaz de adicionar pedidos à lista a partir de uma planilha eletrônica.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF09</strong></td>
+<td>O administrador deverá ser capaz de editar pedidos da lista.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF10</strong></td>
+<td>O administrador deverá ser capaz de excluir pedidos da lista.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF11</strong></td>
+<td>O sistema deverá ordenar os pedidos na lista conforme prioridade.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF12</strong></td>
+<td>O sistema deverá exibir ao usuário apenas um item da lista por vez.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF13</strong></td>
+<td>Considerando-se um mesmo item com atividades referentes a cada departamento, todos os usuários deverão ser capazes de visualizar a situação de cada atividade de cada departamento (não iniciada, em andamento, concluída).</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF15</strong></td>
+<td>O usuário deverá cumprir a atividade de um item relacionada ao seu departamento para que o próximo item e sua atividade correspondente seja exibido a ele.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF16</strong></td>
+<td>Caso a demanda referente a um departamento seja iniciada por determinado usuário, <strong>apenas</strong> os outros usuários do mesmo departamento deverão ser capazes de visualizar o próximo item e suas atividades correspondentes.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF17</strong></td>
+<td>Cada usuário de um departamento deverá ser capaz de iniciar <strong>apenas</strong> uma atividade (correspondente ao seu departamento) de um item por vez, e cumpri-la por meio de um botão.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF18</strong></td>
+<td>O administrador deverá ser capaz de visualizar a situação de cada atividade (não iniciada, em andamento, concluída) associada a cada item da lista.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF19</strong></td>
+<td>O administrador deverá conseguir desfazer uma atividade cumprida por engano pelo menu de demandas e atividades respectivas.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF20</strong></td>
+<td>O usuário deverá ser capaz de visualizar o próprio desempenho, por meio de número de atividades concluídas e número de atividades a serem concluídas para o atingimento da meta diária de produção estabelecida.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF21</strong></td>
+<td>O administrador deverá conseguir gerar/visualizar um relatório de produtividade referente a dias, semanas, e mês passado; por usuário e por departamento.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RF22</strong></td>
+<td>O administrador deverá ser capaz de visualizar todos os usuários do sistema, e detalhes(nome, email, departamento) sobre o seu perfil.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="requisitos-nao-funcionais">Requisitos não-funcionais</h3>
+<p>Requisitos não funcionais descrevem características e qualidades do sistema ou produto. Eles estão relacionados a aspectos como desempenho, confiabilidade, segurança, usabilidade e compatibilidade.</p>
+<p>Seguem, na tabela a seguir, os requisitos não-funcionais do projeto:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong>DESEMPENHO</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF01</strong></td>
+<td>O tempo máximo de resposta para operações como login, cadastro de pedidos e conclusão de atividades deve ser inferior a X tempo (segundos/minutos).</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>CONFIABILIDADE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF02</strong></td>
+<td>O armazenamento de dados deve garantir integridade de disponibilidade de 99,9% do tempo durante o horário de operação (8h às 18h).</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>SEGURANÇA</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF03</strong></td>
+<td>A segurança do sistema deverá garantir acesso controlado baseado nos perfis de usuário, diferenciando permissões de funcionários e administradores.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF04</strong></td>
+<td>O sistema deverá implementar um mecanismo de verificação para confirmar que as atividades foram realmente realizadas, utilizando evidências como fotos (por exemplo) anexadas ao registro de conclusão.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>USABILIDADE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF05</strong></td>
+<td>A interface deve ser intuitiva e fácil de usar, permitindo que usuários de diferentes níveis técnicos operem o sistema sem dificuldade.</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF06</strong></td>
+<td>A aplicação deverá adotar boas práticas de acessibilidade para que seja inclusiva a todos os usuários.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>COMPATIBILIDADE</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF07</strong></td>
+<td>O sistema deve ser compatível com dispositivos tablet, garantindo uma interface otimizada para telas médias</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>RNF07</strong></td>
+<td>O sistema deverá ser escalável para suportar o aumento na quantidade de usuários e demandas de produção, sem comprometimento no desempenho</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="resultados-esperados"><strong>Resultados Esperados</strong></h2>
+<p>Espera-se que a equipe entregue a aplicação funcional em relação a filas de demandas, CRUD de usuarios (funcionários), CRUD de pedidos e ADM, importação da planilha e que no máximo, só não entregue o sistema de gerar relatórios de dias passados, ou semana, ou mês.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
