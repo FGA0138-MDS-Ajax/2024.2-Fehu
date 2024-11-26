@@ -1,4 +1,5 @@
 import 'package:catavento/constants.dart';
+import 'package:catavento/views/home_view.dart';
 import 'package:catavento/views/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,6 +14,7 @@ void main() {
     home: const LoadView(),
     routes: {
       loginRoute: (context) => const LoginView(),
+      homeRoute: (context) => const HomeView(),
     },
   ));
 }
@@ -24,15 +26,18 @@ class LoadView extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Supabase.initialize(
-          url: "https://gfxmrqhwjqekfzrlurqr.supabase.com",
-          anonKey: String.fromEnvironment("ANON_KEY")),
+          url: supabaseUrl,
+          anonKey: supabaseKey,
+          authOptions: const FlutterAuthClientOptions(
+            authFlowType: AuthFlowType.implicit,
+          )),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             final supabase = Supabase.instance.client;
             final user = supabase.auth.currentUser;
             if (user != null) {
-              return const Text("Hey");
+              return const HomeView();
             } else {
               return const LoginView();
             }
