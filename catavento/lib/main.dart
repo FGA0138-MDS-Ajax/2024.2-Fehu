@@ -39,7 +39,7 @@ class LoadView extends StatelessWidget {
             if (user != null) {
               return const HomeView();
             } else {
-              return const LoginView();
+              return const HomeView();
             }
           default:
             return const CircularProgressIndicator();
