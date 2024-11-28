@@ -4,7 +4,7 @@ Future<String?> tablePicker() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(
     dialogTitle: "Escolha a planilha",
     type: FileType.custom,
-    allowedExtensions: ['xlsx'],
+    allowedExtensions: ['xlsx', 'csv'],
   );
 
   if (result != null) {

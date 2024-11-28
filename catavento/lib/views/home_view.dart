@@ -12,6 +12,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  String? caminhoArquivoSelecionado;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +37,26 @@ class _HomeViewState extends State<HomeView> {
             TextButton(
               onPressed: () async {
                 final path = await tablePicker();
+                if(path != null){
+                  setState(() {
+                    caminhoArquivoSelecionado = path;
+                  });
+                }
                 print(path);
               },
               child: const Text("Procurar arquivo"),
             ),
             ElevatedButton(
-              onPressed: () {
+              
+              onPressed: caminhoArquivoSelecionado != null 
+              ? () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ImportPage()),
+                  MaterialPageRoute(builder: (context) => ImportPage(caminhoArquivo: caminhoArquivoSelecionado!)
+                  ),
                 );
-              },
+              }
+              :null, 
               child: Text('Importar CSV'),
             ),
           ],
@@ -56,6 +67,9 @@ class _HomeViewState extends State<HomeView> {
 }
 
 class ImportPage extends StatelessWidget {
+  final String caminhoArquivo;
+  ImportPage({required this.caminhoArquivo});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +79,8 @@ class ImportPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            final filePath = 'CaminhoRelativoDoArquivo';
-            importCSVtoSupabase(filePath);
+            //final filePath = 'CaminhoRelativoDoArquivo';
+            importCSVtoSupabase(caminhoArquivo);
           },
           child: Text('Importar CSV'),
         ),
