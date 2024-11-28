@@ -1,33 +1,49 @@
 import 'dart:io';
 import 'package:csv/csv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:excel/excel.dart';
 
-Future<void> importCSVtoSupabase(String csvFilePath) async {
+Future<void> importExcelToSupabase(String filePath) async {
   final supabase = Supabase.instance.client;
-
-  final csvFile = File(csvFilePath);
-  final csvContent = await csvFile.readAsString();
-
-  final csvData = CsvToListConverter().convert(csvContent, eol: '\n');
-
-  final columnNames = csvData.first; // primeira linha contem os nomes
-  print(columnNames);
-  final dataRows = csvData.skip(1); // nao ler a primeira linha
-  print(dataRows);
-  final dataList = dataRows.map((row) {
-    return Map<String, dynamic>.fromIterables(
-        columnNames.map((e) => e.toString()), row.map((e) => e));
-  }).toList();
-
   try {
-    final response = await supabase.from('demandas').insert(dataList);
+    final fileBytes = File(filePath).readAsBytesSync();
+    final excel = Excel.decodeBytes(fileBytes);
 
-    if (response.isNotEmpty) {
-      print('inserida com sucesso: ${response.length} ');
-    } else {
-      print('Dados nao foram inseridos.');
+    for (var sheetName in excel.tables.keys) {
+      final sheet = excel.tables[sheetName];
+
+      if (sheet != null) {
+        print('processando planilha: $sheetName');
+        for (var row in sheet.rows) {
+          // mapear os valores das celular para uma lista de dados puros
+          final rowData = row.map((cell) => cell?.value?.toString() ?? '').toList();
+
+         
+          print('daddos da linha: $rowData');
+
+          // verifica a validade da coluna (se é nula ou vazia)
+          if (rowData.isNotEmpty && rowData.first.isNotEmpty) {
+            try {
+              
+              final Map<String, dynamic> parsedData = {
+                'nomeDemanda': rowData[0],         
+                'funcionario': rowData[1].isNotEmpty == true ? rowData[1] : 0, 
+                //'outrosDados': int.tryParse(rowData[2]) ?? 0.0, // 
+              };
+
+              
+              print('dados lidos: $parsedData');
+             
+       await supabase.from('demandas').insert(parsedData);
+
+            } catch (e) {
+              print('erro: $e');
+            }
+          }
+        }
+      }
     }
   } catch (e) {
-    print('erro: $e');
+    print('erro ao importar o arquivo: $e');
   }
 }
