@@ -34,13 +34,7 @@ class LoadView extends StatelessWidget {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            final supabase = Supabase.instance.client;
-            final user = supabase.auth.currentUser;
-            if (user != null) {
-              return const HomeView();
-            } else {
-              return const HomeView();
-            }
+            return const HomeView();
           default:
             return const CircularProgressIndicator();
         }

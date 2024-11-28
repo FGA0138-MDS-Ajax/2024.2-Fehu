@@ -1,8 +1,8 @@
 import 'package:catavento/constants.dart';
-import 'package:catavento/services/csv_import_service.dart';
+import 'package:catavento/services/table_import/csv_import_service.dart';
+import 'package:catavento/services/table_import/table_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -22,24 +22,25 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Sign-out button
             TextButton(
               onPressed: () async {
                 final supabase = Supabase.instance.client;
                 await supabase.auth.signOut();
                 if (context.mounted) {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    loginRoute,
-                    (_) => true,
-                  );
+                  Navigator.of(context).pushReplacementNamed(loginRoute);
                 }
               },
               child: const Text("Sair"),
             ),
-            // Button to navigate to ImportPage
+            TextButton(
+              onPressed: () async {
+                final path = await tablePicker();
+                print(path);
+              },
+              child: const Text("Procurar arquivo"),
+            ),
             ElevatedButton(
               onPressed: () {
-                // Navigate to the ImportPage
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ImportPage()),
@@ -64,8 +65,7 @@ class ImportPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            final filePath = 'CaminhoRelativoDoArquivo'; //aqui botar o caminho relativo do arquivo.
-                                                      //futuramente trocar por uma busca pelo arquivo
+            final filePath = 'CaminhoRelativoDoArquivo';
             importCSVtoSupabase(filePath);
           },
           child: Text('Importar CSV'),
