@@ -1,6 +1,16 @@
 import 'dart:io';
+import 'package:catavento/constants.dart';
+import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:excel/excel.dart';
+
+const lojasPrioridade = {
+  'MAGALU': 'alta',
+  'MERCADO LIVRE': 'baixa',
+  'SITE': 'media',
+  'ELO 7': 'alta',
+  'SHOPEE': 'baixa',
+};
 
 Future<void> importExcelToSupabase(String filePath) async {
   final supabase = Supabase.instance.client;
@@ -13,13 +23,8 @@ Future<void> importExcelToSupabase(String filePath) async {
       final sheet = excel.tables[sheetName];
 
       if (sheet != null) {
-        excel.link(sheetName, sheet);
-
-        if (sheet.maxColumns == 3) {
-          sheet.insertColumn(3);
-        }
-
         var rowId = 0;
+        var loja = "";
         for (var row in sheet.rows) {
           final rowData =
               row.map((cell) => cell?.value.toString() ?? '').toList();
@@ -27,30 +32,31 @@ Future<void> importExcelToSupabase(String filePath) async {
           try {
             // Evita linhas inválidas
             if ((rowData[0] != "" && rowData[0] != "null") &&
-                rowData[3] != "1") {
-              final Map<String, dynamic> parsedData = {
-                'nomeDemanda': rowData[0],
-                'funcionario': rowData[1] != "null" ? rowData[1] : "0",
-                'status': rowData[3].isNotEmpty == true ? rowData[3] : '0',
+                (rowData[1] != "" && rowData[1] != "null")) {
+              final dataAdicao = DateFormat(timeFormat).format(DateTime.now());
+              final Map<String, dynamic> demanda = {
+                'nome_demanda': rowData[0],
+                'data_adicao': dataAdicao,
+                'descricao': 'Bolo normal',
+                'status': 'Pendente',
               };
 
-              // Envia os dados ao Supabase
-              final response =
-                  await supabase.from('demandas').insert(parsedData);
+              final codigo = rowData[1];
 
-              if (response.error != null) {
-                print(
-                    'Erro ao inserir no Supabase: ${response.error!.message}');
-              } else {
-                print('Linha ${rowId + 1} enviada com sucesso: $parsedData');
+              if (int.tryParse(codigo) != null) {
+                demanda['produto_id'] = int.parse(codigo);
               }
 
-              // Marca a linha como processada
-              var cell = sheet.cell(CellIndex.indexByColumnRow(
-                columnIndex: 3,
-                rowIndex: rowId,
-              ));
-              cell.value = TextCellValue('X');
+              if (lojasPrioridade.containsKey(loja)) {
+                demanda['prioridade'] = lojasPrioridade[loja];
+              } else {
+                demanda['prioridade'] = 'media';
+              }
+
+              // Envia os dados ao Supabase
+              await supabase.from('demandas').insert(demanda);
+            } else if (rowData[0] != "" && rowData[0] != "null") {
+              loja = rowData[0].toUpperCase();
             }
           } catch (e) {
             print('Erro ao processar a linha ${rowId + 1}: $e');
@@ -59,9 +65,6 @@ Future<void> importExcelToSupabase(String filePath) async {
         }
       }
     }
-
-    // Salva o arquivo Excel atualizado
-    await file.writeAsBytes(excel.encode()!);
     print('Planilha importada e atualizada com sucesso!');
   } catch (e) {
     print('Erro ao importar a planilha: $e');

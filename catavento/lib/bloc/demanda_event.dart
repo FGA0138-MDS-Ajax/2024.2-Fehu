@@ -31,7 +31,7 @@ class DemandaDelete extends DemandaEvent {
   final int id;
   final int order;
 
-  DemandaDelete(this.id, this.order);
+  const DemandaDelete(this.id, this.order);
 }
 
 class DemandaUpdate extends DemandaEvent {
@@ -41,7 +41,7 @@ class DemandaUpdate extends DemandaEvent {
   final String codigo;
   final String descricao;
 
-  DemandaUpdate(
+  const DemandaUpdate(
     this.id,
     this.order,
     this.nomeDemanda,
