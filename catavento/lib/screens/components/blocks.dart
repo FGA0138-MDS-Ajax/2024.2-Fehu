@@ -5,14 +5,14 @@ class Blocks extends StatefulWidget {
   final double? width;
   final double borderRadius;
   final Color color;
-  final String? title;
+  final List<Widget> children;
 
   Blocks({
     this.height,
     this.width,
     this.borderRadius = 16.0,
     required this.color,
-    this.title,
+    required this.children,
   });
 
   @override
@@ -31,17 +31,20 @@ class BlocksState extends State<Blocks> {
     double blockWidth = widget.width ?? screenWidth * 0.9;
     double blockHeight = widget.height ?? screenHeight * 0.5;
 
-    return Container(
-      width: blockWidth,
-      height: blockHeight,
-      padding: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: widget.color,
-        borderRadius: BorderRadius.circular(widget.borderRadius)
-      ),
+    return Stack(
+      children: [
+        Container(
+          width: blockWidth,
+          height: blockHeight,
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            color: widget.color,
+            borderRadius: BorderRadius.circular(widget.borderRadius)
+          ),
+        ),
+
+        ...widget.children,
+      ],
     );
-
   }
-
-
 }
