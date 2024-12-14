@@ -117,6 +117,7 @@ class EmployeeManagement extends StatelessWidget {
                 height: 559,
                 width: 346,
                 borderRadius: 26,
+                children[]
                 ),
 
               SizedBox(width: MediaQuery.of(context).size.height * 0.07),
@@ -126,6 +127,7 @@ class EmployeeManagement extends StatelessWidget {
                 height: 559,
                 width: 380,
                 borderRadius: 26,
+                children[]
                 )*/
 
             ],
