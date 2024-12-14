@@ -29,7 +29,7 @@ class EmployeeManagement extends StatelessWidget {
                     color: Colors.white,
                     height: 97,
                     width: 321,
-                    borderRadius: 26,
+                    borderRadius: 26, children: [],
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -38,7 +38,7 @@ class EmployeeManagement extends StatelessWidget {
                     color: Colors.white,
                     height: 97,
                     width: 321,
-                    borderRadius: 26,
+                    borderRadius: 26, children: [],
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -55,7 +55,7 @@ class EmployeeManagement extends StatelessWidget {
                         padding: EdgeInsets.all(16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(26)
-                        )
+                        ),
                       ),
                       child: Text(
                         "Cadastrar funcionário",
@@ -63,9 +63,9 @@ class EmployeeManagement extends StatelessWidget {
                           fontSize: 16,
                           color: Colors.white
                         ),
-                        )
+                        ),
                       ), 
-                  )
+                  ),
                 ],
               ),
 
@@ -76,7 +76,7 @@ class EmployeeManagement extends StatelessWidget {
                 color: Colors.white,
                 height: 559,
                 width: 346,
-                borderRadius: 26,
+                borderRadius: 26, children: [],
                 ),
 
               SizedBox(width: MediaQuery.of(context).size.height * 0.07),
@@ -85,12 +85,12 @@ class EmployeeManagement extends StatelessWidget {
                 color: Colors.white,
                 height: 559,
                 width: 380,
-                borderRadius: 26,
-                )
+                borderRadius: 26, children: [],
+                ),
 
             ],
-          )
-        ]
+          ),
+        ],
       ),
     );
   }
