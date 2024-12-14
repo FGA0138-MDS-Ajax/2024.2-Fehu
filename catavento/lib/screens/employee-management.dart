@@ -1,9 +1,11 @@
 import 'dart:ffi';
 
+import 'package:catavento/screens/components/graficInfo.dart';
 import 'package:flutter/material.dart';
 import 'components/background.dart';
 import 'components/header.dart';
 import 'components/blocks.dart';
+import 'components/showDialog.dart';
 
 class EmployeeManagement extends StatelessWidget {
   @override
@@ -30,16 +32,44 @@ class EmployeeManagement extends StatelessWidget {
                     height: 97,
                     width: 321,
                     borderRadius: 26,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+
+                        children: [
+                          Icon(
+                            Icons.group,
+                            size: 30,
+                            color: Color(0xFF015C98),
+                          ),
+
+                          SizedBox(width: MediaQuery.of(context).size.height * 0.04),
+
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+
+                            children: [
+
+                            ],
+                          )
+                        ],
+                      )
+                    ],
                   ),
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
-                  Blocks(
+                  /*Blocks(
                     color: Colors.white,
                     height: 97,
                     width: 321,
                     borderRadius: 26,
-                  ),
+                    children: [
+                    
+                    ],
+                  ),*/
 
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
@@ -49,6 +79,16 @@ class EmployeeManagement extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         //Logica do botão
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Showdialog(
+                              width: 463,
+                              height: 402,
+                              title: 'Novo funcionário',
+                            );
+                          },
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF015C98),
@@ -72,7 +112,7 @@ class EmployeeManagement extends StatelessWidget {
               SizedBox(width: MediaQuery.of(context).size.height * 0.07),
 
 
-              Blocks(
+              /*Blocks(
                 color: Colors.white,
                 height: 559,
                 width: 346,
@@ -86,7 +126,7 @@ class EmployeeManagement extends StatelessWidget {
                 height: 559,
                 width: 380,
                 borderRadius: 26,
-                )
+                )*/
 
             ],
           )
