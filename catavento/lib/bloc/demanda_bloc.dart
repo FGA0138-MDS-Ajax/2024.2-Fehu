@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:catavento/constants.dart';
 import 'package:catavento/typedefs.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'demanda_event.dart';
@@ -15,7 +16,7 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
 
   DemandaEvent get initialState => DemandaLoading();
 
-  DemandaBloc() : super(LoadingState([], {})) {
+  DemandaBloc() : super(DemandaLoadingState([], {})) {
     on<DemandaFilter>(_onFilter);
 
     on<DemandaLoading>(_onLoading);
@@ -48,9 +49,9 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
     final metaData = _countDemandas();
 
     if (newData.isEmpty) {
-      emit(FilterState(currentData, metaData));
+      emit(DemandaFilterState(currentData, metaData));
     } else {
-      emit(FilterState(newData, metaData));
+      emit(DemandaFilterState(newData, metaData));
     }
   }
 
@@ -60,7 +61,7 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
 
     final metaData = _countDemandas();
 
-    emit(LoadingState(currentData, metaData));
+    emit(DemandaLoadingState(currentData, metaData));
   }
 
   void _onCreate(DemandaCreate event, Emitter<DemandaState> emit) async {
@@ -75,15 +76,23 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
       }
     }
 
+    final dataAdicao = DateFormat(timeFormat).format(DateTime.now());
+
+    print('Teste');
+    print(event.descricao);
+
     final demanda = {
-      'nomeDemanda': event.nomeDemanda,
-      'codigo': event.codigo,
-      'descricao': event.descricao,
-      'status': event.status,
+      'nome_demanda': event.nomeDemanda,
+      'descricao': event.descricao == '' ? 'Bolo normal' : event.descricao,
+      'status': 'Pendente',
+      'status_cobertura': 0,
+      'status_aplique': 0,
+      'data_adicao': dataAdicao,
+      'prioridade': 'media',
     };
 
     if (fotoUrl != null) {
-      demanda['imagemUrl'] = fotoUrl;
+      demanda['image_url'] = fotoUrl;
     }
 
     try {
@@ -99,7 +108,7 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
 
     final metaData = _countDemandas();
 
-    emit(CreateState(currentData, metaData));
+    emit(DemandaCreateState(currentData, metaData));
   }
 
   void _onDelete(DemandaDelete event, Emitter<DemandaState> emit) async {
@@ -115,29 +124,26 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
 
     final metaData = _countDemandas();
 
-    emit(DeleteState(currentData, metaData));
+    emit(DemandaDeleteState(currentData, metaData));
   }
 
   void _onUpdate(DemandaUpdate event, Emitter<DemandaState> emit) async {
     try {
       final nomeDemanda = event.nomeDemanda;
-      final codigo = event.codigo;
       final descricao = event.descricao;
       final order = event.order;
 
       await supabase.from('demandas').update({
-        'nomeDemanda': nomeDemanda,
-        'codigo': codigo,
+        'nome_demanda': nomeDemanda,
         'descricao': descricao,
       }).eq('id', event.id);
 
-      currentData[order]['nomeDemanda'] = nomeDemanda;
-      currentData[order]['codigo'] = codigo;
+      currentData[order]['nome_demanda'] = nomeDemanda;
       currentData[order]['descricao'] = descricao;
 
       final metaData = _countDemandas();
 
-      emit(UpdateState(currentData, metaData));
+      emit(DemandaUpdateState(currentData, metaData));
     } catch (e) {
       print("Erro ao atualizar demanda: $e");
     }
@@ -152,9 +158,9 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
       switch (data['status']) {
         case '0' || 'Pendente':
           espera++;
-        case '1':
+        case '1' || 'Em fabricação':
           fabricacao++;
-        case '2':
+        case '2' || 'Finalizado':
           completo++;
       }
     }

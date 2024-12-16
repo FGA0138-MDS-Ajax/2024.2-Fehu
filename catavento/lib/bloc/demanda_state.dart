@@ -7,72 +7,22 @@ sealed class DemandaState {
   const DemandaState(this.databaseResponse, this.metaData);
 }
 
-class CreateState extends DemandaState {
-  CreateState(super.databaseResponse, super.metaData);
+class DemandaCreateState extends DemandaState {
+  DemandaCreateState(super.databaseResponse, super.metaData);
 }
 
-class DeleteState extends DemandaState {
-  DeleteState(super.databaseResponse, super.metaData);
+class DemandaDeleteState extends DemandaState {
+  DemandaDeleteState(super.databaseResponse, super.metaData);
 }
 
-class UpdateState extends DemandaState {
-  UpdateState(super.databaseResponse, super.metaData);
+class DemandaUpdateState extends DemandaState {
+  DemandaUpdateState(super.databaseResponse, super.metaData);
 }
 
-class LoadingState extends DemandaState {
-  LoadingState(super.databaseResponse, super.metaData);
+class DemandaLoadingState extends DemandaState {
+  DemandaLoadingState(super.databaseResponse, super.metaData);
 }
 
-class FilterState extends DemandaState {
-  FilterState(super.databaseResponse, super.metaData);
-}
-
-class PhotoSelectedState extends DemandaState {
-  final File? fotoSelecionada;
-
-  PhotoSelectedState(
-    super.databaseResponse,
-    super.metaData,
-    this.fotoSelecionada,
-  );
-}
-
-class PhotoUploadedState extends DemandaState {
-  final String fotoUrl;
-
-  PhotoUploadedState(
-    super.databaseResponse,
-    super.metaData,
-    this.fotoUrl,
-  );
-}
-
-class PhotoSelectionErrorState extends DemandaState {
-  final String message;
-
-  PhotoSelectionErrorState(
-    super.databaseResponse,
-    super.metaData,
-    this.message,
-  );
-}
-
-class PhotoUploadErrorState extends DemandaState {
-  final String error;
-
-  PhotoUploadErrorState(
-    super.databaseResponse,
-    super.metaData,
-    this.error,
-  );
-}
-
-class PhotoUploadSuccessState extends DemandaState {
-  final String publicUrl;
-
-  PhotoUploadSuccessState(
-    super.databaseResponse,
-    super.metaData,
-    this.publicUrl,
-  );
+class DemandaFilterState extends DemandaState {
+  DemandaFilterState(super.databaseResponse, super.metaData);
 }

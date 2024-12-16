@@ -1,16 +1,14 @@
 import 'dart:io';
-
 import 'package:catavento/bloc/demanda_bloc.dart';
 import 'package:catavento/bloc/demanda_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:catavento/screens/components/stage_demand.dart';
-import 'package:catavento/screens/components/menu.dart';
-import '../services/table_import/table_import.dart';
-import '../services/table_import/table_picker.dart';
-import 'components/confirmDialog.dart';
-
+import 'package:catavento/screens/dashboardAdmin/components/stage_demand.dart';
+import 'package:catavento/screens/dashboardAdmin/components/menu.dart';
+import '../../services/table_import/table_import.dart';
+import '../../services/table_import/table_picker.dart';
+import '../dashboardAdmin/components/confirmDialog.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DashBoardAdmin extends StatelessWidget {
@@ -222,7 +220,7 @@ class QuadroGraficoState extends State<QuadroGrafico> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DemandaBloc, DemandaState>(
-      buildWhen: (previous, current) => current is! FilterState,
+      buildWhen: (previous, current) => current is! DemandaFilterState,
       builder: (context, response) {
         final metaData = response.metaData;
 
@@ -634,7 +632,7 @@ class ButtonAddDemanda extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 10,
                       ),
                       ElevatedButton(
                         onPressed: () async {

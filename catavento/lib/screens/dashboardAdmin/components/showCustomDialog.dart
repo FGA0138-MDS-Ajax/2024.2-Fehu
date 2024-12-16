@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:catavento/screens/components/stage_demand.dart';
+import 'package:catavento/screens/dashboardAdmin/components/stage_demand.dart';
 
 class ShowCustomDialog extends StatelessWidget {
   final String name;
