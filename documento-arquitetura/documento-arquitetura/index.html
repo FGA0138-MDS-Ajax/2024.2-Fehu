@@ -1,0 +1,1273 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documento-requisitos/documento-requisitos/">
+      
+      
+        <link rel="next" href="../../documento-plano-testes/documento-plano-testes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Documento de Arquitetura - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documento-de-arquitetura" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentação" class="md-header__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Arquitetura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação" class="md-nav__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação do Projeto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/documento-visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-requisitos/documento-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisões
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introdução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Escopo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-representacao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Representação Arquitetural
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Representação Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Definições
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justificativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Justificativa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Detalhamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-metas-e-restricoes-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Metas e Restrições Arquiteturais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-visao-de-casos-de-uso-escopo-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Visão de Casos de Uso (Escopo do produto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-visao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6. Visão Lógica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-visao-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7. Visão de Implementação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-visao-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8. Visão de Implantação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.8. Visão de Implantação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#281-infraestrutura-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.1. Infraestrutura de Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#282-tecnologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.2. Tecnologias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#283-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.3. Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-restricoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.9. Restrições Adicionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bibliografia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-plano-testes/documento-plano-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 21/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-24-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 24/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-04-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 04/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-09-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 09/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-13-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 13/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-15-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 15/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-16-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 16/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-18-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 18/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisões
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introdução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introdução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Propósito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Escopo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-representacao-arquitetural" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Representação Arquitetural
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Representação Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Definições
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justificativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Justificativa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Detalhamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-metas-e-restricoes-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Metas e Restrições Arquiteturais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-visao-de-casos-de-uso-escopo-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Visão de Casos de Uso (Escopo do produto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-visao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6. Visão Lógica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-visao-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7. Visão de Implementação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-visao-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8. Visão de Implantação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.8. Visão de Implantação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#281-infraestrutura-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.1. Infraestrutura de Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#282-tecnologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.2. Tecnologias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#283-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8.3. Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-restricoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.9. Restrições Adicionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bibliografia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="documento-de-arquitetura">DOCUMENTO DE ARQUITETURA</h1>
+<h2 id="historico-de-revisoes">Histórico de Revisões</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição da Alteração</th>
+<th style="text-align: center;">Nome(s) Integrante(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">07/12/2024</td>
+<td style="text-align: center;">Início do documento</td>
+<td style="text-align: center;">Henrique Bernardes</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">07/12/2024</td>
+<td style="text-align: center;">Redação das definições</td>
+<td style="text-align: center;">Leticia Higa</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">08/12/2024</td>
+<td style="text-align: center;">Redação da justificativa e detalhamentos</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">09/12/2024</td>
+<td style="text-align: center;">Redação inicial de visão de casos de uso</td>
+<td style="text-align: center;">Pedro Henrique</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">13/12/2024</td>
+<td style="text-align: center;">Redação inicial de visão de implantação</td>
+<td style="text-align: center;">Maria Samara</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">13/12/2024</td>
+<td style="text-align: center;">Redação inicial da visão de implementação</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">15/12/2024</td>
+<td style="text-align: center;">Redação das metas e restrições arquiteturais.</td>
+<td style="text-align: center;">Leticia Higa</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.8</td>
+<td style="text-align: center;">16/12/2024</td>
+<td style="text-align: center;">Redação visão de implementação</td>
+<td style="text-align: center;">Daniel Fernandes</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.9</td>
+<td style="text-align: center;">16/12/2024</td>
+<td style="text-align: center;">Redação inicial restrições adicionais</td>
+<td style="text-align: center;">Maria Samara</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">17/12/2024</td>
+<td style="text-align: center;">Redação da visão lógica</td>
+<td style="text-align: center;">Danniele e José Augusto</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">17/12/2024</td>
+<td style="text-align: center;">Redação visão de implementação</td>
+<td style="text-align: center;">Daniel Fernandes</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">17/12/2024</td>
+<td style="text-align: center;">Redação das restrições adicionais</td>
+<td style="text-align: center;">Gabriela Dourado</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">18/12/2024</td>
+<td style="text-align: center;">Complementando a visão de implementação e revisando</td>
+<td style="text-align: center;">Mariana Pereira</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.14</td>
+<td style="text-align: center;">18/12/2024</td>
+<td style="text-align: center;">Revisando e reestruturando os tópicos de metas e restrições arquiteturais e restrições adicionais</td>
+<td style="text-align: center;">Mariana Pereira</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">18/12/2024</td>
+<td style="text-align: center;">Revisão final</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+</tbody>
+</table>
+<h2 id="autores">Autores</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Matrícula</th>
+<th style="text-align: center;">Nome</th>
+<th style="text-align: center;">Descrição do Papel Assumido na Equipe</th>
+<th style="text-align: center;">% Contribuição ao trabalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">222008459</td>
+<td style="text-align: center;">Daniel</td>
+<td style="text-align: center;">Desenvolvedor Frontend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231012058</td>
+<td style="text-align: center;">Danielle</td>
+<td style="text-align: center;">Desenvolvedora Frontend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231026821</td>
+<td style="text-align: center;">Gabriela</td>
+<td style="text-align: center;">Desenvolvedor Backend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231026429</td>
+<td style="text-align: center;">José</td>
+<td style="text-align: center;">Desenvolvedor Backend</td>
+<td style="text-align: center;">12%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231012272</td>
+<td style="text-align: center;">Leticia</td>
+<td style="text-align: center;">Desenvolvedor Frontend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">222037577</td>
+<td style="text-align: center;">Maria Eduarda</td>
+<td style="text-align: center;">Desenvolvedora Backend, analista de qualidade</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231027005</td>
+<td style="text-align: center;">Maria Samara</td>
+<td style="text-align: center;">Desenvolvedora Frontend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">232029210</td>
+<td style="text-align: center;">Mariana</td>
+<td style="text-align: center;">Desenvolvedora Frontend</td>
+<td style="text-align: center;">11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">231026545</td>
+<td style="text-align: center;">Pedro</td>
+<td style="text-align: center;">Desenvolvedor Backend, Banco de Dados</td>
+<td style="text-align: center;">11%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-introducao">1. Introdução</h2>
+<h3 id="11-proposito">1.1. Propósito</h3>
+<p>Este documento descreve a arquitetura do sistema sendo desenvolvido pelo grupo 4 – Runa Fehu – na disciplina de MDS – Métodos de Desenvolvimento de Software – edição do segundo semestre de 2024, Gestão Catavento, buscando fornecer uma visão abrangente do sistema para quaisquer interessados, sejam eles desenvolvedores, testadores e demais. O objetivo principal deste documento é apresentar as decisões arquiteturais, os componentes do sistema, suas interações e tecnologias utilizadas para facilitar o entendimento do projeto, auxiliar na implementação e garantir a qualidade do desenvolvimento. </p>
+<h3 id="12-escopo">1.2. Escopo</h3>
+<p>O detalhamento completo do escopo se encontra no documento de visão. Porém, resumidamente, o sistema a ser desenvolvido trata-se de um aplicativo voltado para tablets android, com foco em auxiliar as demandas da empresa Catavento, que vende bolos fakes. O aplicativo para a loja de bolos tem como objetivo otimizar a comunicação e organização das tarefas entre os membros da equipe. Inicialmente, o foco está em facilitar o gerenciamento das atividades internas da equipe por meio de uma lista de tarefas compartilhada em tempo real, utilizando o Supabase para sincronizar informações entre os dispositivos. As funcionalidades principais incluem a criação, edição e exclusão de tarefas, categorização de status (como "Pendente", "Em andamento" e "Concluído"), e controle de permissões, garantindo que apenas usuários autorizados possam realizar determinadas ações. Ele será implementado utilizando as tecnologias Flutter, para o <em>frontend</em>, Dart, para o <em>backend</em> e o Supabase como banco de dados, garantindo eficiência, escalabilidade e boa experiência do usuário. </p>
+<h2 id="2-representacao-arquitetural">2. Representação Arquitetural</h2>
+<h3 id="21-definicoes">2.1. Definições</h3>
+<p>O sistema seguirá uma arquitetura BLoC (Business Logic Component), uma arquitetura padrão amplamente utilizada no Flutter. Essa arquitetura separa as regras de negócio da interface do usuário, tornando o código rápido, fácil de testar e reutilizável. O BLoC utiliza <em>streams</em> (fluxos de dados) para gerenciar a comunicação entre a interface e as regras de negócio. Em geral, a arquitetura é composta por três camadas principais: a interface de usuário, o componente BLoC e a camada de dados. </p>
+<p>A interface de usuário é responsável pela renderização e captura das interações, mas não contém lógica de negócios, ela apenas responde aos estados enviados pelos Blocs. O componente Bloc é onde ocorre a lógica de negócios, recebendo os eventos da interface, processando-os conforme as regras de negócios e enviando novos estados para a interface. A camada de dados é responsável por fornecer os dados necessários ao Bloc.</p>
+<h3 id="22-justificativa">2.2. Justificativa</h3>
+<p>A arquitetura BLoC foi selecionado pois a divisão dos componentes de software propiciado pela arquitetura ajuda no desenvolvimento e na realização de testes pois diminui o acoplamento e aumenta a coesão do sistema, além de ajudar no gerenciamento de estado da aplicação. Além disso, a arquitetura BLoC foi escolhida por ser bem estabelecida no desenvolvimento de aplicativos Flutter, tendo sido apresentada pela Google, criadora do Flutter, no Google I/O 2018 e posteriormente amplamente adotada por desenvolvedores que utilizam o <em>framework</em>.</p>
+<p>Se tratando de testes, a arquitetura BLoC facilita a execução de testes, pois como os <em>blocs</em> que formam a camada lógica são desacoplados da camada de apresentação e de outros <em>blocs</em> testar um <em>bloc</em> específico não apresenta qualquer dificuldade, e como cada operação de um <em>bloc</em> é chamada por eventos específicos com um estado retornado previsível, a interpretação dos testes é intuitiva e a origem dos erros é de fácil identificação.</p>
+<h3 id="23-detalhamento">2.3. Detalhamento</h3>
+<p>Utilizando a arquitetura BLoC o sistema é dividido em três camadas, uma camada de apresentação, outra de lógica e a última de dados, que são responsáveis respectivamente pela:  </p>
+<ol>
+<li>Comunicação com o usuário final, isto é, tanto a parte gráfica quanto o recebimento de <em>inputs</em>;</li>
+<li>Comunicação com as duas outras camadas, a camada de lógica recebe os inputs da camada de apresentação, realiza chamadas a camada de dados e depois passa as informações recebidas, já processadas, para a camada de apresentação;  </li>
+<li>Armazenar e disponibilizar os dados do sistema para que a camada lógica possa processar esses dados e enviá-los a camada de apresentação;  </li>
+</ol>
+<p>No caso do sistema desenvolvido pela equipe, teremos as páginas do administrador e do funcionário na camada de apresentação se comunicando com os blocs de demandas, usuários e autenticação na camada lógica. Por fim a camada lógica se comunicará com camada de dados que é baseada nas APIs do Supabase. As interações entre cada uns dos elementos podem ser observadas na Figura 1 a seguir.</p>
+<p>É importante notar que elementos de uma mesma camada não devem se comunicar entre si, a fim de evitar um alto acoplamento, além disso a camada de apresentação não se comunica diretamente com a camada de dados, isto a fim de concentrar a lógica nos <em>Blocs</em> de forma que a lógica seja reusável e mais fácil de manter. </p>
+<p><strong><p style="text-align: center;">Figura 1: Esquema de Camadas do Sistema</p></strong></p>
+<p><img alt="Esquema de Camadas do Sistema" src="../assets/camadas.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="24-metas-e-restricoes-arquiteturais">2.4. Metas e Restrições Arquiteturais</h3>
+<p>As metas e restrições arquiteturais para o sistema incluem diversos aspectos fundamentais para seu desenvolvimento e operação. Entre as metas arquiteturais, destaca–se o tempo que respostas, que deve ser de até 2 segundos para garantir uma experiência fluida para gerentes e funcionários, especialmente no acompanhamento em tempo real das demandas. Essa agilidade é essencial para evitar atrasos e desorganização no fluxo produtivo das demandas. Outra meta importante é a disponibilidade, que requer que o sistema deve estar disponível 24 horas por dia, com maior estabilidade durante o horário comercial da empresa, uma vez que a indisponibilidade do sistema pode interromper o fluxo produtivo, prejudicando a visualização e atualização das demandas pelos funcionários.</p>
+<p>Além disso, o sistema deve proporcionar visibilidade das etapas, permitindo que as informações sobre o estado de cada etapa da produção dos bolos devem estar acessíveis para todos os funcionários. Essa característica é crucial, pois algumas etapas só podem ser iniciadas após a conclusão de outras, é fundamental que todos os funcionários possam acompanhar o progresso, garantindo a continuidade e eficiência do processo. A facilidade de uso é outro objetivo essencial, exigindo que o aplicativo seja intuitivo e fácil de aprender, permitindo que novos funcionários consigam utilizá-lo com o menor tempo de treinamento possível. Isso é importante porque alguns funcionários podem ter pouca experiência com tecnologia, por isso a interface deve ser simples, acessível e funcional.</p>
+<p>Outro ponto relevante é a geração de relatórios automatizados. O sistema deve gerar automaticamente relatórios de desempenho dos funcionários, detalhando o tempo gasto na produção de cada bolo. Esses relatórios deverão ser armazenados em uma página específica do sistema, acessível para consulta pelos gerentes. Esses relatórios permitem um controle mais eficiente do desempenho dos funcionários e auxiliam no monitoramento das vendas e da produção. No que se refere a escalabilidade, o sistema deve ser capaz de suportar o aumento do número de demandas e usuários simultâneos sem comprometer o desempenho. Essa capacidade é essencial para preparar o sistema para o crescimento da empresa e atender a um número maior de processos no futuro. Além disso, a utilização do Supabase possibilita atender a demandas de expansão, como o desenvolvimento de outro aplicativo ou o compartilhamento de dados com clientes para que acompanhem o pregresso do produto, graças a capacidade de reagir a mudanças do banco de dados em tempo real e a compatibilidade com diferentes produtos. </p>
+<p>Quantos as restrições arquiteturais, o projeto deve seguir o padrão arquitetural BLoC, que promove uma separação clara entre a interface e a lógica de negócios, aumentando a testabilidade, a manutenção do código e a modularidade. Além disso, o uso do BLoC facilita a escalabilidade do sistema, permitindo implementar novas funcionalidades sem comprometer a estrutura existente. O sistema utilizará o banco de dados Supabase para armazenamento e sincronização em tempo real, que oferece suporte nativo para essas funcionalidades, além de autenticação integradas. O Supabase é compatível com a linguagem Dart e com o framework Flutter, o que facilita a integração e atende às necessidades do sistema para controle dinâmico de demandas e geração de relatórios de desempenho. </p>
+<p>Adicionalmente, o sistema deve ser compatível com tablets, pois esses dispositivos são as ferramentas utilizadas no ambiente de trabalho da empresa. Ele também deve permitir a importação da planilha de dados atualmente utilizada pela empresa, o que facilita a transição para o novo sistema, garantindo a continuidade das operações e evitando a perda de informações históricas importantes. Essa funcionalidade também reduz o esforço manual dos funcionários ao integrar dados ao sistema, considerando a grande quantidade de demandas diárias. </p>
+<h3 id="25-visao-de-casos-de-uso-escopo-do-produto">2.5. Visão de Casos de Uso (Escopo do produto)</h3>
+<p><strong><p style="text-align: center;">Figura 2: Diagrama de Casos de Uso</p></strong></p>
+<p><img alt="Diagrama de Casos de Uso" src="../assets/casosdeuso.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>O sistema suportará três tipos de usuário: o funcionário; e dois tipos de administrador, sendo o gerente de departamento e o administrador de gerentes.</p>
+<p>O administrador, em geral, será capaz de gerenciar demandas individualmente e através de importação de planilha Excel. Ele também será capaz de visualizar o desempenho de funcionários e estabelecer metas. O gerente de demandas será capaz de gerenciar contas de usuário funcionário. O administrador de gerentes, por sua vez, será capaz de gerenciar contas de usuário funcionário e de gerentes de departamento. Adicionalmente, o administrador poderá gerar relatórios de produtividade referentes a determinado período.  </p>
+<p>O usuário funcionário será capaz de visualizar uma demanda por vez e aceitar a tarefa correspondente a seu departamento. Ele será capaz de visualizar seu progresso em sua própria meta de produção diária, e o seu próprio desempenho (quantidade de tarefas entregues por dia).</p>
+<h3 id="26-visao-logica">2.6. Visão Lógica</h3>
+<p>O sistema é subdividido nos seguintes módulos: autenticação, gestão de demandas, gestão de funcionários, geração de relatórios e distribuição de tarefas. Cada módulo foi projetado com base em uma lógica que reflete as necessidades da cliente, garantindo que as funcionalidades estejam organizadas de maneira eficiente e fácil de manter. </p>
+<p>O módulo de autenticação é responsável por controlar o acesso ao sistema e distinguir os perfis de usuários (administrador e funcionário), bem como atribuir permissões específicas a cada um. Esse módulo foi assim pensado para que apenas os administradores pudessem ter o controle total sobre todas as demandas a serem produzidas no dia, enquanto os funcionários pudessem apenas acessar informações sobre as demandas que eles devem produzir no momento.  </p>
+<p>O módulo de gestão de demandas, acessível aos administradores, centraliza o controle do processo produtivo. Ele permite o cadastro de novas demandas, o acompanhamento do progresso de cada tarefa na linha de produção e a definição de prioridades. De forma semelhante, o módulo de gestão de funcionários facilita o gerenciamento de perfis de usuário. Este módulo permite que os administradores cadastrem, editem e excluam perfis de funcionários. </p>
+<p>O módulo de geração de relatórios reúne informações históricas sobre as demandas concluídas, auxiliando os gerentes na análise do desempenho produtivo. Ele também inclui dados sobre os funcionários, como o tempo médio para conclusão de atividades e o número de tarefas finalizadas diariamente. Por outro lado, o módulo de distribuição de tarefas é acessível apenas aos funcionários. Nele, os usuários visualizam as tarefas que precisam executar e têm acesso apenas às etapas de produção em que estão diretamente envolvidos, sem acesso às demais etapas do processo. </p>
+<p>Quanto às interfaces do sistema, o módulo de autenticação funciona como a camada inicial, determinando as permissões de acesso com base no perfil do usuário. Os administradores têm acesso aos módulos de gestão de demandas, gestão de funcionários e geração de relatórios, enquanto os funcionários interagem exclusivamente com o módulo de distribuição de tarefas. De forma integrada, os módulos se comunicam para garantir a sincronia das informações. O módulo de gestão de demandas alimenta o módulo de distribuição de tarefas, que atribui as atividades específicas aos funcionários. Informações geradas nesse processo são enviadas aos módulos de gestão de funcionários e de geração de relatórios para atualização de dados. Assim, a interação entre esses módulos alimenta um fluxo contínuo de informações. </p>
+<p>A seguir, serão apresentados dois diagramas de estados que descrevem o fluxo de sessão de um usuário funcionário e um usuário administrador dentro do sistema, detalhando as possibilidades de navegação de cada um, desde o início até o término de sua sessão. Ambos os processos iniciam com a autenticação do usuário, que caso bem bem-sucedida, o redireciona para uma página inicial. Da mesma forma, nos dois casos as sessões finalizam quando a autenticação não é bem-sucedida ou o próprio usuário opte por encerrar a sessão. </p>
+<p>No diagrama da Figura 3, é possível observar que, após a autenticação, o usuário funcionário é redirecionado para a página de quadro de tarefas, onde ele pode visualizar e interagir com as atividades que lhe foram atribuídas. Além disso, o funcionário tem acesso a um menu que oferece atalhos para realizar o logout ou acessar seus dados pessoais. </p>
+<p><strong><p style="text-align: center;">Figura 3: Diagrama de Estados de Sessão do Usuário Funcionário</p></strong></p>
+<p><img alt="Diagrama de Estados de Sessão do Usuário Funcionário" src="../assets/estados-usuario.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>Em seguida, o diagrama da Figura 4 mostra o fluxo de sessão do usuário administrador. Após a autenticação, o administrador é redirecionado para a página principal de administração, que por padrão é a de gestão de demandas. A partir dessa página, o administrador pode acessar diferentes áreas do sistema por meio do menu, incluindo o cadastro e visualização de produtos, a administração de funcionários, a gestão de demandas e o atalho de logout. </p>
+<p><strong><p style="text-align: center;">Figura 4: Diagrama de Estados de Sessão do Usuário Administrador</p></strong></p>
+<p><img alt="Diagrama de Estados de Sessão do Usuário Administrador" src="../assets/estados-admin.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>O fluxo de atividades da aplicação pode ser dividido em dois, baseados no tipo de usuário, um fluxo para o administrador e o outro para o funcionário. O fluxo de atividades do funcionário envolve simplesmente em iniciar a sessão do seu dispositivo e receber demandas e finalizar demandas recebidas do administrador até que todas sejam completas, o que é mostrado na Figura 5 a seguir</p>
+<p><strong><p style="text-align: center;">Figura 5: Diagrama de Atividades do Funcionário</p></strong></p>
+<p><img alt="Diagrama de Atividades do Funcionário" src="../assets/atividades-func.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>O fluxo de atividades do administrador consiste em importar os bolos que serão produzidos durante o dia de uma planilha e, ao decorrer do dia, acompanhar o processo produtivo usando o aplicativo, eventualmente adicionando, editando ou removendo demandas conforme a necessidade. Por fim, o administrador recebe um relatório contendo o tempo médio que os funcionários levaram para fabricar cada produto, com a possibilidade de visualizar o desempenho de funcionários individuais ou do departamento inteiro. Este fluxo é ilustrado na Figura 6 abaixo. </p>
+<p><strong><p style="text-align: center;">Figura 6: Diagrama de Atividades do Administrador</p></strong></p>
+<p><img alt="Diagrama de Atividades do Administrador" src="../assets/atividades-admin.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>A comunicação entre os módulos ocorre de forma indireta através de blocs, que são responsáveis por mediar as interações entre a camada de apresentação e a camada de dados. Essa estrutura garante baixo acoplamento entre os módulos, permitindo que cada um opere de forma independente e sem dependências diretas. De forma resumida, qualquer dado necessário para as funções de um módulo é adquirido ou da camada de apresentação ou da camada de dados por meio de objetos da classe Event ou chamadas da Api do Supabase.</p>
+<p>Os dados são persistidos localmente pela aplicação nos vários blocs que compõem a camada lógica da aplicação, esses blocs realizam chamadas ao banco de dados baseados em events que são adicionados aos blocs por meio do método add e disponibilizam as informações recebidas por meio da emissão de um State por meio do método emit, no caso de operações que não necessitam de uma nova chamada ao banco de dados, por exemplo quando é apenas necessário apenas filtrar os dados já armazenados, o bloc é responsável por processar os dados armazenados e envia-los a camada de apresentação. </p>
+<p>Na figura 7 abaixo é representado uma configuração básica e genérica de como um bloc armazena as informações e as classes utilizadas para a comunicação com a camada de apresentação, note que currentData e data são do tipo DatabaseResponse um nome dado para os dados recebidos do banco de dados que são do tipo List<Map\<String,dynamic>>.</p>
+<p><strong><p style="text-align: center;">Figura 7: Diagrama de Classes</p></strong></p>
+<p><img alt="Diagrama de Classes" src="../assets/classes.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="27-visao-de-implementacao">2.7. Visão de Implementação</h3>
+<p>A aplicação terá quatro pacotes principais: <strong>Screens</strong>, <strong>Blocs</strong>, Supabase, e <strong>Services</strong>. A interação com o usuário é responsabilidade das páginas e <strong>widgets</strong> contidos no pacote <strong>Screens</strong> que por sua vez depende das classes e funções definidas tanto no pacote <strong>Blocs</strong> como no pacote Services, que disponibiliza funções para importação de dados vindos de arquivos do dispositivo.</p>
+<p>A comunicação com o banco de dados é realizada através da classe <strong>Client</strong> do pacote Supabase Flutter, uma biblioteca desenvolvida pelo Supabase que permite a realização de requisições para o <strong>backend</strong> como serviço. Por fim, a comunicação entre a camada de apresentação e o banco de dados é intermediada pelas classes do pacote <strong>Blocs</strong> que além de simplesmente atuarem como as pontes de comunicação entre o usuário e o banco de dados também guardam em si a lógica de negócios da aplicação. A interação entre esses pacotes e a as classes que os compõem, de forma simplificada, pode ser vista na Figura 8 abaixo. O diagrama ilustra como o pacote <strong>Screens</strong> interage diretamente com os pacotes Blocs e Services, enquanto o Blocs realiza as requisições ao banco de dados por meio do pacote Supabase. Além disso, destaca-se que <strong>Services</strong> fornece funcionalidades auxiliares ao Screens, como importação de dados. Essa divisão garante uma arquitetura modular e facilita a manutenção e evolução do software. </p>
+<p><strong><p style="text-align: center;">Figura 8: Diagrama de Pacotes</p></strong></p>
+<p><img alt="Diagrama de Pacotes" src="../assets/pacotes.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="28-visao-de-implantacao">2.8. Visão de Implantação</h3>
+<p>O sistema será implantado em tablets android, por serem dispositivos que unem mobilidade com uma tela que permite o software apresentar mais informações ao usuário. Esses dispositivos são ideais para um software de gestão.  </p>
+<p>As tecnologias utilizadas serão o Flutter e o Supabase, o primeiro um framework de desenvolvimento multiplataforma especializado no desenvolvimento mobile baseado na linguagem Dart, linguagem que é compilada em código nativo proporcionando alto desempenho nessas plataformas, e o segundo um backend como serviço com integração nativa com o Flutter e APIs para a comunicação em tempo real com o banco de dados, essencial para o acompanhamento do processo produtivo. Além disso será usado um banco de dados PostgreSQL, que garante a integridade das informações armazenadas e a possibilidade de acesso simultâneo ao banco de dados por vários usuários.</p>
+<h4 id="281-infraestrutura-de-hardware">2.8.1. Infraestrutura de Hardware</h4>
+<p>Para rodar o software, será necessário, como a alternativa pedida pela cliente, um tablet com 4GB de RAM e conexão Wi-Fi. Esse requisito garante que o sistema funcione de maneira eficiente e estável. </p>
+<h4 id="282-tecnologias">2.8.2. Tecnologias</h4>
+<p>O desenvolvimento será realizado utilizando tecnologias modernas. O Flutter, um framework amplamente utilizado no mercado, permitirá o desenvolvimento de aplicações para diferentes sistemas operacionais, como Android e iOS, além de multiplataformas. Ele oferece pacotes de bibliotecas pré-prontas que tornam o desenvolvimento mais ágil e eficiente. Sua popularidade no mercado é atribuída à versatilidade, desempenho elevado e alto grau de personalização. </p>
+<p>A linguagem Dart será a base para o desenvolvimento do sistema. Essa linguagem, conhecida por sua eficiência, utiliza a compilação a compilação AOT (Ahead-of-Time), que converte o código diretamente em linguagem nativa, proporcionando alto desempenho em dispositivos móveis, como celulares, tablets e notebooks. </p>
+<p>Como solução de backend, será utilizado o Supabase. Desenvolvido para ser escalável, acessível e baseado em código aberto, o Supabase atende às necessidades de desenvolvedores do todos os níveis de habilidade. Sua compatibilidade com o Flutter e a linguagem Dart facilita a integração e permite atualizações de dados em tempo real, um requisito essencial para o gerenciamento eficiente entre os departamentos do cliente. </p>
+<h4 id="283-banco-de-dados">2.8.3. Banco de Dados</h4>
+<p>O banco de dados desempenhará um papel crucial na gestão de usuário e autenticação, garantindo proteção contra acessos não autorizados. O sistema contará com diferentes níveis de acesso, divididos entre administradores, gerentes e funcionários, o que assegura maior controle e segurança. Além disso, o banco de dados será projetado para escalabilidade, permitindo que o sistema atenda a novas demandas no futuro. Isso inclui, por exemplo, a possibilidade de desenvolver outros aplicativos ou compartilhar dados com clientes, permitindo que acompanhem o progresso dos produtos em tempo real. Essa escalabilidade é essencial para suportar o aumento no número de demandas e usuários simultâneos, sem comprometer o desempenho do sistema.</p>
+<h3 id="29-restricoes-adicionais">2.9. Restrições Adicionais</h3>
+<p>As restrições negociais e de qualidade do sistema estabelecem diretrizes importantes para o seu desenvolvimento e operação. Uma das principais restrições negocias é a autenticação obrigatória. O software exige que todos os usuários se autentiquem com um nome de usuário e senha, garantindo que cada funcionário tenha um perfil associado às suas funções, com níveis de acesso diferenciados. Perfis como Administrador e Gerente terão acesso a telas e funcionalidades exclusivas. Essa medida é necessária para proteger informações sensíveis da empresa, como registos de pedidos e informações confidenciais sobre clientes e fornecedores. Além disso, evita acessos não autorizados por terceiros, garantindo a conformidade com regulamentos de segurança e proteção de dados.</p>
+<p>Entre as restrições de qualidade, destaca-se a usabilidade, que requer que a interface do aplicativo deve ser acessível, intuitiva e amigável, projetada para facilitar a navegação, especialmente para usuários com menos familiaridade com tecnologia. Essa facilidade de uso é crucial para que todos os colaboradores, incluindo adultos mais velhos com pouca experiência tecnológica, consigam operar o sistema sem dificuldades, reduzindo o tempo necessário para treinamento e melhora a produtividade. Outra restrição essencial é a confiabilidade do sistema. Ele deve oferecer alta disponibilidade com um uptime de 99,9% e recuperação rápida de falhas, garantindo que nenhum dado seja perdido em casos de interrupções ou falhas. A confiabilidade é essencial para evitar prejuízos ao negócio, pois o sistema é usado para gerenciar a demanda de produção de bolos. Qualquer interrupção pode comprometer os prazos de entrega, prejudicar a satisfação da cliente e afetar a produtividade da empresa.</p>
+<p>No aspeto de portabilidade, o sistema deve ser projetado para funcionar de forma eficaz em dispositivos móveis como tablets, que são amplamente utilizados no ambiente de trabalho da empresa. Essa característica garante que o sistema possa ser acessado em qualquer local dentro do ambiente corporativo. Por fim, a manutenibilidade do código é uma prioridade. O sistema deve ser desenvolvido de forma modular, com documentação clara e boas práticas de programação, facilitando a identificação e correção de falhas ou a adição de novas funcionalidades. Isso é essencial para que o sistema possa ser atualizado regularmente e acompanhar as necessidades crescentes do negócio e mantendo-se relevante e funcional ao longo do tempo. </p>
+<h2 id="3-bibliografia">3. Bibliografia</h2>
+<p>ALURA. <strong>O que é Flutter? O Framework do Iniciante ao Avançado</strong>. 2023. Disponível em: <a href="https://www.alura.com.br/artigos/flutter?srsltid=AfmBOorUEUJL41Ic2Su7wjTpL7NKLdhUQ2dYdDMhPqwyBBAVQ-sZlJwe">https://www.alura.com.br/artigos/flutter?srsltid=AfmBOorUEUJL41Ic2Su7wjTpL7NKLdhUQ2dYdDMhPqwyBBAVQ-sZlJwe</a>. Acesso em: 13 de dezembro de 2024.</p>
+<p>FLUTTER. <strong>Flutter architectural overview</strong>. 2024. Disponível em: <a href="https://docs.flutter.dev/resources/architectural-overview">https://docs.flutter.dev/resources/architectural-overview</a>. Acesso em: 13 de dezembro de 2024. </p>
+<p>SUPABASE. <strong>Auth architecture</strong>. 2024. Disponível em: <a href="https://supabase.com/docs/guides/auth/architecture">https://supabase.com/docs/guides/auth/architecture</a>. Acesso em: 16 de dezembro de 2024.</p>
+<p>DEVIN INTERFACE. <strong>A Supabase overview</strong>. Disponível em: <a href="https://www.devinterface.com/en/blog/a-supabase-overview">https://www.devinterface.com/en/blog/a-supabase-overview</a>. Acesso em: 17 dezembro 2024. </p>
+<p>WELL. <strong>Supabase, uma plataforma de desenvolvimento de aplicativos web</strong>. Disponível em: <a href="https://leoandrade.net/supabase-uma-plataforma-de-desenvolvimento-de-aplicativos-web/">https://leoandrade.net/supabase-uma-plataforma-de-desenvolvimento-de-aplicativos-web/</a>. Acesso em: 17 dezembro 2024. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
