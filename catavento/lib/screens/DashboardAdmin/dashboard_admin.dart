@@ -78,6 +78,8 @@ class AddDemandPageAdminState extends State<AddDemandPageAdmin> {
   @override
   void initState() {
     super.initState();
+    demandaController = DemandaController(context.read<DemandaBloc>());
+    demandaController.initialize();
   }
 
   @override
@@ -152,6 +154,7 @@ class AddDemandPageAdminState extends State<AddDemandPageAdmin> {
 
   @override
   void dispose() {
+    demandaController.finalize();
     super.dispose();
   }
 }

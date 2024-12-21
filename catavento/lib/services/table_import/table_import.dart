@@ -4,16 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:excel/excel.dart';
 
-const lojasPrioridade = {
-  'MAGALU': 'alta',
-  'MERCADO LIVRE': 'baixa',
-  'SITE': 'media',
-  'ELO 7': 'alta',
-  'SHOPEE': 'baixa',
-};
-
 Future<void> importExcelToSupabase(String filePath) async {
   final supabase = Supabase.instance.client;
+  List<Map<String, dynamic>> demandas = [];
 
   try {
     final file = File(filePath);
@@ -38,6 +31,7 @@ Future<void> importExcelToSupabase(String filePath) async {
                 'data_adicao': dataAdicao,
                 'descricao': 'Bolo normal',
                 'status': 'Pendente',
+                'loja': loja,
               };
 
               final codigo = int.tryParse(rowData[1]);
@@ -46,13 +40,7 @@ Future<void> importExcelToSupabase(String filePath) async {
                 demanda['produto_id'] = codigo;
               }
 
-              if (lojasPrioridade.containsKey(loja)) {
-                demanda['prioridade'] = lojasPrioridade[loja];
-              } else {
-                demanda['prioridade'] = 'media';
-              }
-
-              await supabase.from('demandas').insert(demanda);
+              demandas.add(demanda);
             } else if (rowData[0] != "" && rowData[0] != "null") {
               loja = rowData[0].toUpperCase();
             }
@@ -66,5 +54,11 @@ Future<void> importExcelToSupabase(String filePath) async {
     print('Planilha importada e atualizada com sucesso!');
   } catch (e) {
     print('Erro ao importar a planilha: $e');
+  }
+
+  try {
+    await supabase.from('demandas').insert(demandas);
+  } catch (e) {
+    print(e);
   }
 }
