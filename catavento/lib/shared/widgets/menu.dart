@@ -1,5 +1,7 @@
 import 'package:catavento/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:catavento/bloc/auth/auth_bloc.dart' as auth_bloc;
 
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
@@ -45,6 +47,7 @@ class Navbar extends StatelessWidget {
           ListTile(
             title: const Text('Sair da Conta'),
             onTap: () {
+              context.read<auth_bloc.AuthBloc>().add(auth_bloc.AuthLogoutButtonPressed());
               Navigator.pushNamed(context, loginRoute);
             },
           ),

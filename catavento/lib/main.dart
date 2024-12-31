@@ -27,7 +27,7 @@ void main() {
         ),
         home: const LoadView(),
         routes: {
-          loginRoute: (context) => const Login(),
+          loginRoute: (context) => const LoginForm(),
           homeRoute: (context) => const DashBoardAdmin(),
           crudFuncionariosRoute: (context) => EmployeeManagement(),
         },
@@ -58,7 +58,7 @@ class LoadView extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => const Login()));
+                          builder: (BuildContext context) => const LoginForm()));
                 }
                 if (state is auth_bloc.AuthUserAuthenticated) {
                   Navigator.pushReplacement(
