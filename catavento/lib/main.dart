@@ -1,5 +1,7 @@
 import 'package:catavento/bloc/auth/auth_bloc.dart' as auth_bloc;
 import 'package:catavento/bloc/demanda/demanda_bloc.dart';
+import 'package:catavento/bloc/login/login_bloc.dart';
+import 'package:catavento/bloc/registration/registration_bloc.dart';
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
 import 'package:catavento/constants.dart';
 import 'package:catavento/core/di/dependency_injection.dart';
@@ -10,14 +12,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  setupDependencies();
+  configureDependencies();
+
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => DemandaBloc()..add(DemandaLoading())),
         BlocProvider(create: (context) => UsuarioBloc()..add(UsuarioLoading())),
         BlocProvider(
-            create: (_) => getIt<auth_bloc.AuthBloc>()..add(auth_bloc.AuthInitialCheckRequested())),
+            create: (_) => getIt<auth_bloc.AuthBloc>()
+              ..add(auth_bloc.AuthInitialCheckRequested())),
+        BlocProvider(
+            create: (_) => getIt<LoginBloc>()..add(LoginButtonPressed())),
+        BlocProvider(
+            create: (_) => getIt<RegistrationBloc>()
+              ..add(RegistrationRegisterButtonPressed()))
       ],
       child: MaterialApp(
         title: "Gestão Catavento",
@@ -58,7 +69,8 @@ class LoadView extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => const LoginForm()));
+                          builder: (BuildContext context) =>
+                              const LoginForm()));
                 }
                 if (state is auth_bloc.AuthUserAuthenticated) {
                   Navigator.pushReplacement(

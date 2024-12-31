@@ -31,7 +31,7 @@ class PurpleTextField extends StatelessWidget {
                 context.read<LoginBloc>().add(LoginPasswordChanged(value));
               }
             },
-            keyboardType: type == 'email' ? TextInputType.emailAddress : null,
+            keyboardType: type == 'email' ? TextInputType.emailAddress : TextInputType.visiblePassword,
             obscureText: type == 'password' ? true : false,
             decoration: InputDecoration(
                 border: OutlineInputBorder(

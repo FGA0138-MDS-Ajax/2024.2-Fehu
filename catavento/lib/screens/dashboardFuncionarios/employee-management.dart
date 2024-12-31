@@ -179,6 +179,11 @@ class EmployeeManagement extends StatelessWidget {
                                       hint: "Senha para o funcionário",
                                       controller: _senhaController,
                                     ),
+                                    Inputs(
+                                      text: "Confirmar senha:",
+                                      hint: "Confirme a senha para o funcionário",
+                                      controller: _senhaController,
+                                    ),
                                     SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *

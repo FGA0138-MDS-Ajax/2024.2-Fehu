@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components/input_purple.dart';
-import 'components/button_sing_in.dart';
+import 'components/button_sign_in.dart';
 import 'package:catavento/shared/widgets/showDialog.dart';
 
 class LoginForm extends StatefulWidget {
