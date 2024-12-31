@@ -1,4 +1,4 @@
-import 'package:catavento/bloc/auth/auth_bloc.dart';
+import 'package:catavento/bloc/auth/auth_bloc.dart' as auth_bloc;
 import 'package:catavento/bloc/demanda/demanda_bloc.dart';
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
 import 'package:catavento/constants.dart';
@@ -16,7 +16,8 @@ void main() {
       providers: [
         BlocProvider(create: (context) => DemandaBloc()..add(DemandaLoading())),
         BlocProvider(create: (context) => UsuarioBloc()..add(UsuarioLoading())),
-        BlocProvider(create: (_) => getIt<AuthBloc>()..add(AuthInitialCheckRequested())),
+        BlocProvider(
+            create: (_) => getIt<auth_bloc.AuthBloc>()..add(auth_bloc.AuthInitialCheckRequested())),
       ],
       child: MaterialApp(
         title: "Gestão Catavento",
@@ -51,7 +52,25 @@ class LoadView extends StatelessWidget {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            return const DashBoardAdmin();
+            return BlocConsumer<auth_bloc.AuthBloc, auth_bloc.AuthState>(
+              listener: (context, state) {
+                if (state is auth_bloc.AuthUserUnauthenticated) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => const Login()));
+                }
+                if (state is auth_bloc.AuthUserAuthenticated) {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const DashBoardAdmin()));
+                }
+              },
+              builder: (context, state) => const CircularProgressIndicator(),
+            );
+
           default:
             return const CircularProgressIndicator();
         }
