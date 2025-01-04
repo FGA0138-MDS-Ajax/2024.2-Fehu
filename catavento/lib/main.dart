@@ -7,7 +7,7 @@ import 'package:catavento/constants.dart';
 import 'package:catavento/core/di/dependency_injection.dart';
 import 'screens/DashboardAdmin/dashboard_admin.dart';
 import 'package:catavento/screens/Login/login.dart';
-import 'package:catavento/screens/dashboardFuncionarios/employee-management.dart';
+import 'package:catavento/screens/dashboardFuncionarios/employee_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
