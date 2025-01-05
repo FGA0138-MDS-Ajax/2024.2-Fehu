@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Blocks extends StatefulWidget {
   final String? title;
+  final Color? titleColor;
   final double? height;
   final double? width;
   final double borderRadius;
@@ -10,6 +11,7 @@ class Blocks extends StatefulWidget {
 
   Blocks({
     this.title,
+    this.titleColor,
     this.height,
     this.width,
     this.borderRadius = 16.0,
@@ -49,7 +51,7 @@ class BlocksState extends State<Blocks> {
                 widget.title!,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
+                  color: widget.titleColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

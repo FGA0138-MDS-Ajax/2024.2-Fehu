@@ -1,26 +1,24 @@
 import 'package:catavento/shared/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:catavento/bloc/demanda/demanda_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Search extends StatefulWidget {
-  const Search({super.key});
+class Searchproducts extends StatefulWidget {
+  const Searchproducts({super.key});
 
   @override
-  State<Search> createState() {
-    return SearchState();
+  State<Searchproducts> createState() {
+    return SearchproductsState();
   }
 }
 
-class SearchState extends State<Search> {
-  final TextEditingController _nomeDemanda = TextEditingController();
+class SearchproductsState extends State<Searchproducts> {
+  final TextEditingController _nomeProduto = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 500,
       height: 32,
       child: TextField(
-        controller: _nomeDemanda,
+        controller: _nomeProduto,
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.search,
@@ -28,32 +26,26 @@ class SearchState extends State<Search> {
             ),
             //Icon de pesquisa
 
-            hintText: "Insira o nome de uma demanda para iniciar uma busca",
+            hintText: "Insira o nome do produto para iniciar uma busca",
             hintStyle: TextStyle(
                 fontSize: 11,
-                color: Colors.black.withOpacity(0.5) //Opacidade do texto
+                color: AppColors.blue.withOpacity(0.5) //Opacidade do texto
                 ),
             filled: true,
             fillColor: AppColors.lightGray,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: AppColors.lightGray, width: 2),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.lightGray, width: 2),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(10),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.lightGray, width: 2),
-              borderRadius: BorderRadius.circular(16),
-            )),
-        onEditingComplete: () {
-          context.read<DemandaBloc>().add(DemandaFilter(
-                // BACKEND
-                'nome_demanda',
-                _nomeDemanda.text,
-              )); // BACKEND
-        },
+              borderRadius: BorderRadius.circular(10),
+            )
+          ),
       ),
     );
   }

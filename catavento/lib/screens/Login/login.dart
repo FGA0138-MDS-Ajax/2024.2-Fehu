@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:catavento/bloc/login/login_bloc.dart';
 import 'package:catavento/main.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -97,24 +98,21 @@ class _LoginFormState extends State<LoginForm> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 50, 20, 0),
-                          child: ButtonSignIn(
-                            title: Text(
-                              "Entrar",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            isLoading: isLoading,
-                            icon: Icon(
-                              Icons.keyboard_arrow_right_rounded,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                isLoading = !isLoading;
-                              });
-                            },
+                        ButtonSignIn(
+                          title: Text("Entrar",
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
+                          icon: Icon(
+                            Icons.keyboard_arrow_right_rounded,
+                            color: Colors.white,
                           ),
+                          onPressed: () {
+                            setState(() {
+                              isLoading = !isLoading;
+                            });
+                          },
+                          isLoading: isLoading,
                         )
                       ],
                     )

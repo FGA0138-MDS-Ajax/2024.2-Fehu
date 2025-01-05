@@ -36,12 +36,14 @@ class UsuarioUpdate extends UsuarioEvent {
   final int id;
   final String nome;
   final String setor;
+  final String tipo;
   final String email;
   final String usuario;
 
   const UsuarioUpdate(
     this.nome,
     this.setor,
+    this.tipo,
     this.email,
     this.usuario,
     this.id,

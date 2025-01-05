@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:catavento/shared/theme/colors.dart';
 
 class Infofuncionarios extends StatelessWidget{
   final String nome;
@@ -24,13 +25,9 @@ class Infofuncionarios extends StatelessWidget{
 
       children: [
         Info(texto: "Nome: ", info: nome),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         Info(texto: "Email: ", info: email),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         Info(texto: "Status: ", info: status),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         Info(texto: "Setor: ", info: setor),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
         Info(texto: "Atividade em andamento: ", info: demanda),
 
       ],
@@ -58,7 +55,7 @@ class Info extends StatelessWidget {
           texto,
           style: TextStyle(
             fontSize: 20,
-            color: Colors.black,
+            color: AppColors.blue,
             fontWeight: FontWeight.bold
           ),
         ),
@@ -66,7 +63,7 @@ class Info extends StatelessWidget {
           info,
           style: TextStyle(
             fontSize: 20,
-            color: Colors.black,
+            color: AppColors.blue,
           )
         )
       ],

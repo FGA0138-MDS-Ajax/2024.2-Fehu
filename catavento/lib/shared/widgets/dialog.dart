@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:catavento/shared/widgets/confirmDialog.dart';
+import 'package:catavento/shared/theme/colors.dart';
 
 class ReusableDialog extends StatelessWidget {
   final String title;
@@ -13,8 +14,8 @@ class ReusableDialog extends StatelessWidget {
     required this.title,
     required this.body,
     this.confirmBeforeClose = false,
-    this.backgroundColor = const Color(0xFFD1EEFF),
-    this.borderRadius = const BorderRadius.all(Radius.circular(16)),
+    this.backgroundColor = AppColors.lightGray,
+    this.borderRadius = const BorderRadius.all(Radius.circular(25)),
   });
 
   void _showCloseConfirmationDialog(BuildContext context) {
@@ -34,47 +35,69 @@ class ReusableDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: borderRadius),
-      child: SizedBox(
-        width: 534,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Header com título e botão de fechar
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+      child: Stack(
+        children: [
+          SizedBox(
+            width: 534,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 55, right: 25, top: 25, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'FredokaOne',
+                          color: AppColors.gradientDarkBlue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  IconButton(
-                    onPressed: () {
-                      if (confirmBeforeClose) {
-                        _showCloseConfirmationDialog(context);
-                      } else {
-                        Navigator.pop(context);
-                      }
-                    },
-                    icon: const Icon(Icons.close, size: 25),
-                  )
-                ],
+                ),
+                // Corpo da dialog
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 25.0, horizontal: 25.0),
+                    child: body,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 28,
+            right: 25,
+            child: GestureDetector(
+              onTap: () {
+                if (confirmBeforeClose) {
+                  _showCloseConfirmationDialog(context);
+                } else {
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: AppColors.gradientDarkBlue,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                  size: 22,
+                ),
               ),
             ),
-            // Corpo da dialog
-            Flexible(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 16.0),
-                child: body,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

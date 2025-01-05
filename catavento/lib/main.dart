@@ -4,10 +4,11 @@ import 'package:catavento/bloc/login/login_bloc.dart';
 import 'package:catavento/bloc/registration/registration_bloc.dart';
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
 import 'package:catavento/constants.dart';
+import 'package:catavento/screens/Produtos/dashboard_produtos.dart';
 import 'package:catavento/core/di/dependency_injection.dart';
+import 'package:catavento/screens/dashboardFuncionarios/employee-management.dart';
 import 'screens/DashboardAdmin/dashboard_admin.dart';
 import 'package:catavento/screens/Login/login.dart';
-import 'package:catavento/screens/dashboardFuncionarios/employee_management.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -35,12 +36,14 @@ void main() async {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
+          fontFamily: 'Fredoka',
         ),
         home: const LoadView(),
         routes: {
           loginRoute: (context) => const LoginForm(),
           homeRoute: (context) => const DashBoardAdmin(),
           crudFuncionariosRoute: (context) => EmployeeManagement(),
+          produtosRoute: (context) => DashboardProdutos(),
         },
       ),
     ),
@@ -70,7 +73,7 @@ class LoadView extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const LoginForm()));
+                              const DashBoardAdmin()));
                 }
                 if (state is auth_bloc.AuthUserAuthenticated) {
                   Navigator.pushReplacement(

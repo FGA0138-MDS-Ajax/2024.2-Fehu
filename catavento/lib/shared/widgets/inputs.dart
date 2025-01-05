@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catavento/bloc/registration/registration_bloc.dart';
+import 'package:catavento/shared/theme/colors.dart';
 
 class InputTextField extends StatelessWidget {
   final String type;
@@ -127,15 +128,15 @@ Widget inputDate() {
               fillColor: Colors.white,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey, width: 2),
+                borderSide: BorderSide(color: AppColors.mediumPink, width: 2),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey, width: 2),
+                borderSide: BorderSide(color: AppColors.mediumPink, width: 2),
               ),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey, width: 2))),
+                  borderSide: BorderSide(color: AppColors.pink, width: 2))),
         ),
       ),
       SizedBox(
@@ -143,7 +144,7 @@ Widget inputDate() {
       ),
       Icon(
         Icons.calendar_month,
-        color: Colors.black26,
+        color: AppColors.gradientLightBlue,
       )
     ],
   );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // BACKEND
 import 'package:catavento/bloc/demanda/demanda_bloc.dart';
@@ -7,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // components
 import 'package:catavento/screens/DashboardAdmin/components/graph.dart';
+import 'package:catavento/shared/widgets/blocks.dart';
+import 'package:catavento/shared/theme/colors.dart';
 
 class QuadroGrafico extends StatefulWidget {
   const QuadroGrafico({super.key});
@@ -18,36 +19,31 @@ class QuadroGrafico extends StatefulWidget {
 }
 
 class QuadroGraficoState extends State<QuadroGrafico> {
-  final List<Color> colors = [Colors.green, Colors.red];
+  final List<Color> colors = [AppColors.gradientDarkBlue, AppColors.mediumPink];
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size; // Tamanho da tela
+    final size = MediaQuery.of(context).size;
     return BlocBuilder<DemandaBloc, DemandaState>(
       buildWhen: (previous, current) => current is! DemandaFilterState,
       builder: (context, response) {
         final metaData = response.metaData;
 
         return Container(
-          width: size.width * 0.9, // Largura igual ao ListDemanda
-          height: size.height * 0.65, // Altura igual ao ListDemanda
+          width: size.width * 0.9,
+          height: size.height * 0.65,
           child: Column(
             children: [
               // Primeiro Card - Gráfico
-              Container(
-                width: size.width * 0.9,
+              Blocks(
                 height: size.height * 0.2,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                color: AppColors.lightGray,
                 child: Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Texto à esquerda
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,14 +59,28 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                                 ),
                               ),
                               SizedBox(width: 8),
-                              Text(
-                                "Completas: ${metaData['completo']}",
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text("Completas: ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.gradientDarkBlue,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Text(
+                                    "${metaData['completo']}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: AppColors.gradientDarkBlue,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Row(
                             children: [
                               Container(
@@ -82,28 +92,60 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                                 ),
                               ),
                               SizedBox(width: 8),
-                              Text(
-                                "Restantes: ${metaData['restantes']}",
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text("Restantes: ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.gradientDarkBlue,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Text(
+                                    "${metaData['restantes']}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: AppColors.gradientDarkBlue,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                           SizedBox(height: 10),
-                          Text(
-                            "Total: ${metaData['total']}",
-                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Total: ",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.gradientDarkBlue,
+                                    fontFamily: 'FredokaOne'),
+                              ),
+                              Text(
+                                "${metaData['total']}",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.gradientDarkBlue,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      // Gráfico à direita
                       SizedBox(
                         width: 80,
                         height: 80,
                         child: PizzaChart(
                           completas: metaData['completo'] ?? 0,
                           restantes: metaData['restantes'] ?? 0,
-                          colors: [Colors.green, Colors.red],
+                          colors: [
+                            AppColors.gradientDarkBlue,
+                            AppColors.mediumPink
+                          ],
                         ),
                       ),
                     ],
@@ -113,14 +155,10 @@ class QuadroGraficoState extends State<QuadroGrafico> {
 
               SizedBox(height: 15),
 
-              // Segundo Card - Status de Fabricacao
-              Container(
-                width: size.width * 0.9,
+              // Segundo Card - Status de Fabricação
+              Blocks(
                 height: size.height * 0.2,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                color: AppColors.lightGray,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +168,7 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                       child: Icon(
                         Icons.cake_rounded,
                         size: 60,
-                        color: Colors.pink,
+                        color: AppColors.mediumPink,
                       ),
                     ),
                     SizedBox(width: 30),
@@ -144,14 +182,16 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                             "${metaData['fabricacao']}",
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              fontFamily: 'FredokaOne',
+                              color: AppColors.gradientDarkBlue,
                             ),
                           ),
                           SizedBox(height: 2),
                           Text(
                             "Em fabricação",
-                            style: TextStyle(fontSize: 14, color: Colors.black),
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.gradientDarkBlue),
                           ),
                         ],
                       ),
@@ -159,29 +199,38 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                   ],
                 ),
               ),
+
               SizedBox(height: 15),
 
               // Terceiro Card - Status de Espera
-              Container(
-                width: size.width * 0.9,
+              Blocks(
                 height: size.height * 0.2,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                color: AppColors.lightGray,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: EdgeInsets.all(0),
-                      child: Icon(
-                        Icons.layers,
-                        size: 60,
-                        color: Color(0xFF015C98),
+                      child: ShaderMask(
+                        shaderCallback: (bounds) {
+                          return LinearGradient(
+                            colors: [
+                              AppColors.gradientDarkBlue,
+                              AppColors.gradientLightBlue
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ).createShader(bounds);
+                        },
+                        child: Icon(
+                          Icons.layers,
+                          size: 60,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    SizedBox(width: 30),
+                    SizedBox(width: 50),
                     Padding(
                       padding: EdgeInsets.all(0),
                       child: Column(
@@ -192,14 +241,16 @@ class QuadroGraficoState extends State<QuadroGrafico> {
                             "${metaData['espera']}",
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              fontFamily: 'FredokaOne',
+                              color: AppColors.gradientDarkBlue,
                             ),
                           ),
                           SizedBox(height: 2),
                           Text(
                             "Em espera",
-                            style: TextStyle(fontSize: 14, color: Colors.black),
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: AppColors.gradientDarkBlue),
                           ),
                         ],
                       ),

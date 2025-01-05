@@ -24,11 +24,11 @@ class _ButtonSignInState extends State<ButtonSignIn> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-        builder: (context, state) => InkWell(
-              onTap: () {
+        builder: (context, state) => ElevatedButton(
+              onPressed: () {
                 state.isSubmitting() || !state.isValid
-                  ? null
-                  : context.read<LoginBloc>().add(LoginButtonPressed());
+                    ? null
+                    : context.read<LoginBloc>().add(LoginButtonPressed());
                 widget.onPressed();
               },
               child: Container(

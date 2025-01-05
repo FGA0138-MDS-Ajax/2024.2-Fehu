@@ -19,63 +19,66 @@ class ConfirmDialog extends StatelessWidget {
         title,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
       ),
       content: Text(
         contente,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 16,
           color: Colors.black,
         ),
       ),
       actions: <Widget>[
-        Expanded(
-            child: Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: 137,
-              height: 57,
+              width: 100,
+              height: 30,
               child: ElevatedButton(
-                  onPressed: onConfirm,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF50B432),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(22))),
-                  child: Text(
-                    "Sim",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  )),
+                onPressed: onConfirm,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF50B432),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                ),
+                child: Text(
+                  "Sim",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
+            SizedBox(width: 40),
             SizedBox(
-              width: 40,
-            ),
-            SizedBox(
-              width: 137,
-              height: 57,
+              width: 100,
+              height: 30,
               child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFFD54A3D),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(22))),
-                  child: Text(
-                    "Não",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  )),
-            )
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0xFFD54A3D),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                ),
+                child: Text(
+                  "Não",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           ],
-        )),
+        ),
       ],
     );
   }

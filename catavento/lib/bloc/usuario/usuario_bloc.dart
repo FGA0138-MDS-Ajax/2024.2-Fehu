@@ -81,6 +81,7 @@ class UsuarioBloc extends Bloc<UsuarioEvent, UsuarioState> {
     try {
       final nome = event.nome;
       final usuario = event.usuario;
+      final tipo = event.tipo;
       final setor = event.setor;
       final email = event.email;
       final id = event.id;
@@ -93,6 +94,10 @@ class UsuarioBloc extends Bloc<UsuarioEvent, UsuarioState> {
 
       if (usuario.isNotEmpty) {
         atualizado['usuario'] = usuario;
+      }
+
+      if (tipo.isNotEmpty) {
+        atualizado['tipo'] = tipo;
       }
 
       if (setor.isNotEmpty) {
