@@ -1,6 +1,7 @@
 import 'package:catavento/screens/dashboardFuncionarios/components/DropDownButton.dart';
 
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
+import 'package:catavento/shared/widgets/inputs.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'components/ativAndamentoCard.dart';
@@ -16,6 +17,8 @@ import 'package:catavento/shared/widgets/blocks.dart';
 import 'package:catavento/shared/widgets/menu.dart';
 import 'package:catavento/shared/widgets/dialog.dart';
 import 'package:catavento/shared/widgets/graficInfo.dart';
+
+import 'components/register_button.dart';
 
 class EmployeeManagement extends StatelessWidget {
   final List<Map<String, String>> ativAndamento = [
@@ -44,6 +47,8 @@ class EmployeeManagement extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usuarioController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _confirmarSenhaController =
+      TextEditingController();
   final TextEditingController _tipoController = TextEditingController();
 
   @override
@@ -303,143 +308,161 @@ class EmployeeManagement extends StatelessWidget {
 
   void _showNewEmployeeDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (context) {
-        return ReusableDialog(
-          backgroundColor: AppColors.lightGray,
-          title: "Novo Funcionário",
-          confirmBeforeClose: true,
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Inputs(
-                        text: "Nome",
-                        controller: _nomeController,
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Tipo de Acesso',
-                            style: TextStyle(
-                                color: AppColors.blue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            children: [
-                              CheckBox(
-                                tipo: 'gerente',
-                                controller: _tipoController,
+        context: context,
+        builder: (context) {
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              child: LayoutBuilder(builder: (context, constraints) {
+                double dialogWidth =
+                    constraints.maxWidth * 0.9; // 90% da largura disponível
+                if (dialogWidth > 500) {
+                  dialogWidth = 500; // Limite máximo de largura
+                }
+
+                return ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: dialogWidth),
+                    child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: SingleChildScrollView(
+                            child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Novo Funcionário',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.blue,
+                                    ),
+                                  ),
+                                )),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: Icon(
+                                    Icons.close,
+                                    size: 25,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              const Text(
-                                'Gerente',
-                                style: TextStyle(color: AppColors.blue),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Inputs(
+                                    text: "Nome",
+                                    controller: _nomeController,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        'Tipo de Acesso',
+                                        style: TextStyle(
+                                            color: AppColors.blue,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Row(
+                                        children: [
+                                          CheckBox(
+                                            tipo: 'gerente',
+                                            controller: _tipoController,
+                                          ),
+                                          const Text(
+                                            'Gerente',
+                                            style: TextStyle(
+                                                color: AppColors.blue),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          CheckBox(
+                                            tipo: 'padrao',
+                                            controller: _tipoController,
+                                          ),
+                                          const Text(
+                                            'Funcionário',
+                                            style: TextStyle(
+                                                color: AppColors.blue),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Setor*",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: AppColors.blue,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Dropdownbutton(
+                                        controller: _setorController,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  InputTextField(
+                                    type: 'email',
+                                    labelText: 'Email',
+                                    hintText: 'Email do funcionário',
+                                    controller: _emailController,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  InputTextField(
+                                    labelText: "Nome de usuário:",
+                                    hintText: "Nome de usuário do funcionário",
+                                    controller: _usuarioController,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  InputTextField(
+                                    type: 'password',
+                                    labelText: 'Senha',
+                                    hintText: 'Senha para o funcionário',
+                                    controller: _senhaController,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  InputTextField(
+                                    type: 'confirmPassword',
+                                    labelText: "Confirmar senha:",
+                                    hintText:
+                                        "Confirme a senha para o funcionário",
+                                    controller: _confirmarSenhaController,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              CheckBox(
-                                tipo: 'padrao',
-                                controller: _tipoController,
-                              ),
-                              const Text(
-                                'Funcionário',
-                                style: TextStyle(color: AppColors.blue),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        children: [
-                          Text(
-                            "Setor*",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: AppColors.blue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Dropdownbutton(
-                            controller: _setorController,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      Inputs(
-                        text: "Email",
-                        controller: _emailController,
-                      ),
-                      const SizedBox(height: 16),
-                      Inputs(
-                        text: "Nome de Usuário",
-                        controller: _usuarioController,
-                      ),
-                      const SizedBox(height: 16),
-                      Inputs(
-                        text: "Senha",
-                        controller: _senhaController,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        AppColors.gradientDarkBlue,
-                        AppColors.gradientLightBlue
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<UsuarioBloc>().add(UsuarioCreate(
-                            _nomeController.text,
-                            _usuarioController.text,
-                            _setorController.text,
-                            _emailController.text,
-                            _tipoController.text,
-                            _senhaController.text,
-                          ));
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22),
-                      ),
-                    ),
-                    child: const Text(
-                      "Concluir",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+                            ),
+                            const SizedBox(height: 24),
+                            RegisterButton(
+                                nomeController: _nomeController,
+                                usuarioController: _usuarioController,
+                                setorController: _setorController,
+                                emailController: _emailController,
+                                senhaController: _senhaController)
+                          ],
+                        ))));
+              }));
+        });
   }
 }
