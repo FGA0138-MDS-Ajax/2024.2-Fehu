@@ -7,6 +7,7 @@ import 'package:catavento/shared/widgets/confirmDialog.dart';
 import 'package:catavento/shared/theme/colors.dart';
 import 'DropDownButton.dart';
 import 'checkBox.dart';
+import 'package:catavento/shared/widgets/dialog.dart';
 
 class FuncionarioCard extends StatefulWidget {
   final String nomeFuncionario;
@@ -49,7 +50,7 @@ class FuncionarioCardState extends State<FuncionarioCard> {
         ),
         subtitle: Text(
           'Setor: ${widget.setor}\nStatus: ${widget.status}',
-          style: TextStyle(color: AppColors.blue),
+          style: TextStyle(color: AppColors.gradientDarkBlue),
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
@@ -106,172 +107,130 @@ class FuncionarioCardState extends State<FuncionarioCard> {
     showDialog(
       context: context,
       builder: (context) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              double dialogWidth =
-                  constraints.maxWidth * 0.9; // 90% da largura disponível
-              if (dialogWidth > 500) {
-                dialogWidth = 500; // Limite máximo de largura
-              }
-
-              return ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: dialogWidth),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'Editar Funcionario',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.blue,
-                                ),
-                              ),
-                            )),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(
-                                Icons.close,
-                                size: 25,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
+        return ReusableDialog(
+          title: "Editar Funcionário",
+          confirmBeforeClose: false,
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Inputs(
+                        text: "Nome",
+                        controller: _nomeController,
+                        hint: user['nome'],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Tipo de Acesso',
+                            style: TextStyle(
+                                color: AppColors.gradientDarkBlue,
+                                fontWeight: FontWeight.bold),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Inputs(
-                                text: "Nome",
-                                controller: _nomeController,
-                                hint: user['nome'],
+                              CheckBox(
+                                tipo: 'gerente',
+                                controller: _tipoController,
                               ),
-                              const SizedBox(height: 16),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    'Tipo de Acesso',
-                                    style: TextStyle(
-                                        color: AppColors.blue,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      CheckBox(
-                                        tipo: 'gerente',
-                                        controller: _tipoController,
-                                      ),
-                                      const Text(
-                                        'Gerente',
-                                        style: TextStyle(color: AppColors.blue),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CheckBox(
-                                        tipo: 'padrao',
-                                        controller: _tipoController,
-                                      ),
-                                      const Text(
-                                        'Funcionário',
-                                        style: TextStyle(color: AppColors.blue),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Setor*",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: AppColors.blue,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Dropdownbutton(
-                                    controller: _setorController,
-                                  )
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Inputs(
-                                text: "Email",
-                                controller: _emailController,
-                                hint: user['email'],
-                              ),
-                              const SizedBox(height: 16),
-                              Inputs(
-                                text: "Nome de Usuário",
-                                controller: _usuarioController,
-                                hint: user['usuario'],
-                              ),
-                              const SizedBox(height: 16),
-                              Inputs(
-                                text: "Senha",
-                                controller: _senhaController,
+                              const Text(
+                                'Gerente',
+                                style: TextStyle(
+                                    color: AppColors.gradientDarkBlue),
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(height: 24),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<UsuarioBloc>().add(UsuarioUpdate(
-                                  _nomeController.text,
-                                  _setorController.text,
-                                  _tipoController.text,
-                                  _emailController.text.isEmpty
-                                      ? user['email']
-                                      : _emailController.text.isEmpty,
-                                  _usuarioController.text,
-                                  user['id'],
-                                ));
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.blue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 32, vertical: 12),
+                          Row(
+                            children: [
+                              CheckBox(
+                                tipo: 'padrao',
+                                controller: _tipoController,
+                              ),
+                              const Text(
+                                'Funcionário',
+                                style: TextStyle(
+                                    color: AppColors.gradientDarkBlue),
+                              ),
+                            ],
                           ),
-                          child: const Text(
-                            "Concluir",
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Text(
+                            "Setor*",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: AppColors.gradientDarkBlue,
+                                fontWeight: FontWeight.bold),
                           ),
-                        ),
-                      ],
-                    ),
+                          Dropdownbutton(
+                            controller: _setorController,
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Inputs(
+                        text: "Email",
+                        controller: _emailController,
+                        hint: user['email'],
+                      ),
+                      const SizedBox(height: 16),
+                      Inputs(
+                        text: "Nome de Usuário",
+                        controller: _usuarioController,
+                        hint: user['usuario'],
+                      ),
+                      const SizedBox(height: 16),
+                      Inputs(
+                        text: "Senha",
+                        controller: _senhaController,
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<UsuarioBloc>().add(UsuarioUpdate(
+                          _nomeController.text,
+                          _setorController.text,
+                          _tipoController.text,
+                          _emailController.text.isEmpty
+                              ? user['email']
+                              : _emailController.text.isEmpty,
+                          _usuarioController.text,
+                          user['id'],
+                        ));
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.gradientDarkBlue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 12),
+                  ),
+                  child: const Text(
+                    "Concluir",
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -283,78 +242,35 @@ class FuncionarioCardState extends State<FuncionarioCard> {
     showDialog(
       context: context,
       builder: (context) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              double dialogWidth =
-                  constraints.maxWidth * 0.9; // 90% da largura disponível
-              if (dialogWidth > 500) {
-                dialogWidth = 500; // Limite máximo de largura
-              }
-
-              return ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: dialogWidth),
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                                child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                user['usuario'],
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.blue,
-                                ),
-                              ),
-                            )),
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: Icon(
-                                Icons.close,
-                                size: 25,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Infofuncionarios(
-                                  nome: user['nome'],
-                                  email: user['email'],
-                                  status: "Indisponível",
-                                  setor: user['setor'],
-                                  demanda:
-                                      "Indisponível") //Trocar para as informações do banco de dados
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+        return ReusableDialog(
+          title: user['usuario'], // Mostra o nome de usuário no título
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Infofuncionarios(
+                        nome: user['nome'],
+                        email: user['email'],
+                        status: user['status'] ?? "Indisponível",
+                        setor: user['setor'],
+                        demanda: user['demanda'] ?? "Indisponível",
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
+              ],
+            ),
           ),
+          confirmBeforeClose: false, // Fecha sem confirmação
         );
       },
     );

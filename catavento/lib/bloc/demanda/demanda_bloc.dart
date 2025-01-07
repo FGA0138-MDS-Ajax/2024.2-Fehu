@@ -13,7 +13,7 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
   final _supabase = Supabase.instance.client;
   DatabaseResponse _currentData = [];
   bool _newEvent = false;
-  File? _fotoSelecionada;
+  // File? _fotoSelecionada;
 
   DemandaEvent get initialState => DemandaLoading();
 
@@ -32,7 +32,9 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
   @override
   void onEvent(DemandaEvent event) {
     super.onEvent(event);
-    _newEvent = true;
+    if (event is! DemandaFilter && event is! DemandaLoading) {
+      _newEvent = true;
+    }
   }
 
   bool isLocalEvent() {
@@ -72,7 +74,10 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
   }
 
   void _onLoading(DemandaLoading event, Emitter<DemandaState> emit) async {
-    final response = await _supabase.from('demandas').select();
+    final response = await _supabase.from('demandas').select().order(
+          'data_adicao',
+          ascending: true,
+        );
     _currentData = response;
 
     final metaData = _countDemandas();
@@ -87,12 +92,15 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
         final filename = '${DateTime.now().millisecondsSinceEpoch}.jpg';
         await _supabase.storage.from('imagens').upload(filename, event.foto!);
         fotoUrl = _supabase.storage.from('imagens').getPublicUrl(filename);
-      } catch (error) {
-        throw Exception('Erro ao fazer upload da foto: $error');
+      } catch (e) {
+        final metaData = _countDemandas();
+        emit(DemandaErrorState(
+          _currentData,
+          metaData,
+          "Erro ao importar foto - $e",
+        ));
       }
     }
-
-    final dataAdicao = DateFormat(timeFormat).format(DateTime.now());
 
     final demanda = {
       'nome_demanda': event.nomeDemanda,
@@ -100,9 +108,56 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
       'status': 'Pendente',
       'status_cobertura': 0,
       'status_aplique': 0,
-      'data_adicao': dataAdicao,
       'loja': 'Não especificada',
     };
+
+    try {
+      final produto =
+          await _supabase.from('produtos').select().eq('id', event.codigo);
+
+      if (produto.isNotEmpty) {
+        demanda['produto_id'] = event.codigo;
+        if (event.descricao == '') {
+          demanda['descricao'] = produto[0]['descricao_padrao'];
+        }
+        if (event.nomeDemanda == '') {
+          demanda['nome_demanda'] = produto[0]['nome_produto'];
+        }
+      }
+    } catch (e) {
+      final metaData = _countDemandas();
+      emit(DemandaErrorState(
+        _currentData,
+        metaData,
+        "Erro ao acessar o banco de dados - $e",
+      ));
+    }
+
+    late String dataAdicao;
+
+    if (event.data == null || event.data!.length != 8) {
+      dataAdicao = DateFormat(timeFormat).format(DateTime.now());
+    } else {
+      final splitData = event.data!.split('/');
+      final time = DateFormat('HH:mm:ss').format(DateTime.now());
+      final dataSting =
+          '20${splitData[2]}-${splitData[1]}-${splitData[0]} $time';
+      final dateTime = DateFormat(timeFormat).tryParse(dataSting);
+      if (dateTime != null) dataAdicao = dataSting;
+    }
+
+    demanda['data_adicao'] = dataAdicao;
+
+    if (event.prazo == null || event.prazo!.length != 8) {
+      demanda['prazo'] = demanda['data_adicao'] as String;
+    } else {
+      final splitData = event.prazo!.split('/');
+      final time = DateFormat('HH:mm:ss').format(DateTime.now());
+      final dataSting =
+          '20${splitData[2]}-${splitData[1]}-${splitData[0]} $time';
+      final dateTime = DateFormat(timeFormat).tryParse(dataSting);
+      if (dateTime != null) demanda['prazo'] = dataSting;
+    }
 
     if (fotoUrl != null) {
       demanda['image_url'] = fotoUrl;
@@ -114,10 +169,20 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
       if (response.isNotEmpty) {
         _currentData.add(response[0]);
       } else {
-        throw Exception("Erro ao adiciona demanda");
+        final metaData = _countDemandas();
+        emit(DemandaErrorState(
+          _currentData,
+          metaData,
+          "Erro ao adicionar demanda",
+        ));
       }
-    } catch (_) {
-      throw Exception('Erro ao adicionar demanda');
+    } catch (e) {
+      final metaData = _countDemandas();
+      emit(DemandaErrorState(
+        _currentData,
+        metaData,
+        "Erro ao adicionar demanda - $e",
+      ));
     }
 
     final metaData = _countDemandas();
@@ -133,7 +198,12 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
         _currentData.removeAt(event.order);
       }
     } catch (e) {
-      print('Erro ao buscar dados: $e');
+      final metaData = _countDemandas();
+      emit(DemandaErrorState(
+        _currentData,
+        metaData,
+        "Erro ao deletar demanda - $e",
+      ));
     }
 
     final metaData = _countDemandas();
@@ -147,19 +217,55 @@ class DemandaBloc extends Bloc<DemandaEvent, DemandaState> {
       final descricao = event.descricao;
       final order = event.order;
 
-      await _supabase.from('demandas').update({
-        'nome_demanda': nomeDemanda,
-        'descricao': descricao,
-      }).eq('id', event.id);
+      final demanda = {};
 
-      _currentData[order]['nome_demanda'] = nomeDemanda;
-      _currentData[order]['descricao'] = descricao;
+      if (nomeDemanda.isNotEmpty) {
+        demanda["nome_demanda"] = nomeDemanda;
+        _currentData[order]['nome_demanda'] = nomeDemanda;
+      }
+
+      if (descricao.isNotEmpty) {
+        demanda["descricao"] = descricao;
+        _currentData[order]['descricao'] = descricao;
+      }
+
+      if (event.data!.length == 8) {
+        final splitData = event.data!.split('/');
+        final time = DateFormat('HH:mm:ss').format(DateTime.now());
+        final dataString =
+            '20${splitData[2]}-${splitData[1]}-${splitData[0]} $time';
+        final dateTime = DateFormat(timeFormat).tryParse(dataString);
+        if (dateTime != null) {
+          demanda['data_adicao'] = dataString;
+          _currentData[order]['data_adicao'] = dataString;
+        }
+      }
+
+      if (event.prazo!.length == 8) {
+        final splitData = event.prazo!.split('/');
+        final time = DateFormat('HH:mm:ss').format(DateTime.now());
+        final dataString =
+            '20${splitData[2]}-${splitData[1]}-${splitData[0]} $time';
+        final dateTime = DateFormat(timeFormat).tryParse(dataString);
+        if (dateTime != null) {
+          demanda['prazo'] = dataString;
+          _currentData[order]['prazo'] = dataString;
+        }
+      }
+
+      await _supabase.from('demandas').update(demanda).eq('id', event.id);
 
       final metaData = _countDemandas();
 
       emit(DemandaUpdateState(_currentData, metaData));
     } catch (e) {
-      print("Erro ao atualizar demanda: $e");
+      print(e);
+      final metaData = _countDemandas();
+      emit(DemandaErrorState(
+        _currentData,
+        metaData,
+        "Erro ao atualizar demanda - $e",
+      ));
     }
   }
 

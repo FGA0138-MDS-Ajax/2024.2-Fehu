@@ -36,7 +36,7 @@ class BlocksState extends State<Blocks> {
         Container(
           height: widget.height ?? defaultHeight,
           width: widget.width ?? defaultWidth,
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: widget.color,
               borderRadius: BorderRadius.circular(widget.borderRadius)),
@@ -50,10 +50,9 @@ class BlocksState extends State<Blocks> {
               child: Text(
                 widget.title!,
                 style: TextStyle(
-                  fontSize: 16,
-                  color: widget.titleColor,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 16,
+                    color: widget.titleColor,
+                    fontFamily: 'FredokaOne'),
               ),
             ),
           ),

@@ -38,12 +38,6 @@ class DemandCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nomeController =
-        TextEditingController(text: nomeDemanda);
-    final TextEditingController codigoController =
-        TextEditingController(text: codigo);
-    final TextEditingController descricaoController =
-        TextEditingController(text: descricao);
     return Card(
       color: Colors.white,
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -82,7 +76,7 @@ class DemandCard extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 14,
                               fontFamily: "FredokaOne",
-                              color: AppColors.gradientDarkBlue,
+                              color: AppColors.blue,
                             ),
                           ),
                         ),
@@ -102,14 +96,14 @@ class DemandCard extends StatelessWidget {
                           "Plataforma: ",
                           style: TextStyle(
                               fontSize: 14,
-                              color: AppColors.gradientDarkBlue,
+                              color: AppColors.blue,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
                           plataforma,
                           style: TextStyle(
                             fontSize: 14,
-                            color: AppColors.gradientDarkBlue,
+                            color: AppColors.blue,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -123,14 +117,14 @@ class DemandCard extends StatelessWidget {
                           "Descrição: ",
                           style: TextStyle(
                               fontSize: 14,
-                              color: AppColors.gradientDarkBlue,
+                              color: AppColors.blue,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
                           descricao,
                           style: TextStyle(
                             fontSize: 14,
-                            color: AppColors.gradientDarkBlue,
+                            color: AppColors.blue,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -144,7 +138,7 @@ class DemandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.info, color: AppColors.gradientDarkBlue),
+                    icon: Icon(Icons.info, color: AppColors.blue),
                     onPressed: () {
                       _showInfoDialog(context, nomeDemanda, codigo, descricao,
                           status, "https://via.placeholder.com/150");
@@ -152,21 +146,16 @@ class DemandCard extends StatelessWidget {
                   ),
                   // botão de Editar.
                   IconButton(
-                    icon: Icon(Icons.edit, color: AppColors.gradientDarkBlue),
+                    icon: Icon(Icons.edit, color: AppColors.blue),
                     onPressed: () {
                       //  editar a demanda
-                      _showEditDialog(
-                          context,
-                          nomeController,
-                          codigoController,
-                          descricaoController,
+                      _showEditDialog(context,
                           bloc); // BACKEND (não retirar o bloc, o resto OK)
                     },
                   ),
                   // apagar
                   IconButton(
-                      icon:
-                          Icon(Icons.delete, color: AppColors.gradientDarkBlue),
+                      icon: Icon(Icons.delete, color: AppColors.blue),
                       onPressed: () async {
                         showDialog(
                           context: context,
@@ -192,14 +181,13 @@ class DemandCard extends StatelessWidget {
     );
   }
 
-  // Função para mostrar as informações da demanda em um diálogo
   void _showInfoDialog(BuildContext context, String nome, String codigo,
       String descricao, String status, String imageUrl) {
     final dataSplit = dataAdicao.substring(0, 10).split('-');
     final data = "${dataSplit[2]}/${dataSplit[1]}/${dataSplit[0]}";
 
-    final prazoSplit = dataAdicao.substring(0, 10).split('-');
-    final prazo = "${prazoSplit[2]}/${prazoSplit[1]}/${prazoSplit[0]}";
+    final prazoSplit = prazo.substring(0, 10).split('-');
+    final prazoString = "${prazoSplit[2]}/${prazoSplit[1]}/${prazoSplit[0]}";
     showDialog(
       context: context,
       builder: (context) {
@@ -309,7 +297,7 @@ class DemandCard extends StatelessWidget {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: prazo,
+                                        text: prazoString,
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           color: AppColors.gradientDarkBlue,
@@ -401,9 +389,9 @@ class DemandCard extends StatelessWidget {
                     // Etapas dinâmicas
                     Column(
                       children: [
-                        _buildEtapa("Etapa 1", "completed"),
-                        _buildEtapa("Etapa 2", "in_progress"),
-                        _buildEtapa("Etapa 3", "pending"),
+                        _buildEtapa("Etapa 1: Corte", "completed"),
+                        _buildEtapa("Etapa 2: Aplique", "in_progress"),
+                        _buildEtapa("Etapa 3: Montagem", "pending"),
                       ],
                     ),
                   ],
@@ -450,7 +438,10 @@ class DemandCard extends StatelessWidget {
         children: [
           Text(
             nome,
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           etapaIcon,
         ],
@@ -458,12 +449,12 @@ class DemandCard extends StatelessWidget {
     );
   }
 
-  void _showEditDialog(
-      BuildContext context,
-      TextEditingController nomeController,
-      TextEditingController codigoController,
-      TextEditingController descricaoController,
-      DemandaBloc bloc) {
+  void _showEditDialog(BuildContext context, DemandaBloc bloc) {
+    final TextEditingController nomeController = TextEditingController();
+    final TextEditingController codigoController = TextEditingController();
+    final TextEditingController descricaoController = TextEditingController();
+    final TextEditingController dataController = TextEditingController();
+    final TextEditingController prazoController = TextEditingController();
     showDialog(
       context: context,
       builder: (context) {
@@ -560,7 +551,7 @@ class DemandCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 10),
                                 Expanded(
-                                  child: inputDate(),
+                                  child: inputDate(dataController),
                                 ),
                               ],
                             ),
@@ -577,7 +568,7 @@ class DemandCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 10),
                                 Expanded(
-                                  child: inputDate(),
+                                  child: inputDate(prazoController),
                                 ),
                               ],
                             ),
@@ -605,7 +596,7 @@ class DemandCard extends StatelessWidget {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Icon(
-                                  Icons.receipt_long_rounded,
+                                  Icons.search,
                                   color: AppColors.gradientDarkBlue,
                                   size: 20,
                                 ),
@@ -626,7 +617,7 @@ class DemandCard extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: InputTextField(
-                                    hintText: "Código da demanda",
+                                    hintText: "Descrição da demanda",
                                     controller: descricaoController,
                                     labelText: 'Descrição',
                                     maxLines: 4,
@@ -648,17 +639,19 @@ class DemandCard extends StatelessWidget {
                       onPressed: () {
                         // Conexão com o Backend
                         bloc.add(DemandaUpdate(
-                          id,
-                          order,
-                          nomeController.text,
-                          codigoController.text,
-                          descricaoController.text,
+                          id: id,
+                          order: order,
+                          nomeDemanda: nomeController.text,
+                          codigo: codigoController.text,
+                          descricao: descricaoController.text,
+                          data: dataController.text,
+                          prazo: prazoController.text,
                         ));
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
                         textStyle: TextStyle(color: Colors.white),
-                        backgroundColor: AppColors.gradientDarkBlue,
+                        backgroundColor: AppColors.blue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(22),
                         ),

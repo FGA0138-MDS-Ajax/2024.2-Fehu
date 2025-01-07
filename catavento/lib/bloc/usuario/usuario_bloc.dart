@@ -48,8 +48,13 @@ class UsuarioBloc extends Bloc<UsuarioEvent, UsuarioState> {
         } else {
           throw Exception("Erro ao adiciona usuario");
         }
-      } catch (_) {
-        throw Exception('Erro ao adicionar usuario');
+      } catch (e) {
+        final metaData = _countUsuarios();
+        emit(UsuarioErrorState(
+          _currentData,
+          metaData,
+          "Erro ao criar novo usuário - $e",
+        ));
       }
     }
 
@@ -69,7 +74,12 @@ class UsuarioBloc extends Bloc<UsuarioEvent, UsuarioState> {
         _currentData.removeAt(event.order);
       }
     } catch (e) {
-      print('Erro ao buscar dados: $e');
+      final metaData = _countUsuarios();
+      emit(UsuarioErrorState(
+        _currentData,
+        metaData,
+        "Erro ao remover usuário - $e",
+      ));
     }
 
     final metaData = _countUsuarios();
@@ -125,17 +135,31 @@ class UsuarioBloc extends Bloc<UsuarioEvent, UsuarioState> {
 
       emit(UsuarioUpdateState(_currentData, metaData));
     } catch (e) {
-      print("Erro ao atualizar usuario: $e");
+      final metaData = _countUsuarios();
+      emit(UsuarioErrorState(
+        _currentData,
+        metaData,
+        "Erro ao atualizar usuário - $e",
+      ));
     }
   }
 
   void _onLoading(UsuarioLoading event, Emitter<UsuarioState> emit) async {
-    final response = await _supabase.from('usuarios').select();
-    _currentData = response;
+    try {
+      final response = await _supabase.from('usuarios').select();
+      _currentData = response;
 
-    final metaData = _countUsuarios();
+      final metaData = _countUsuarios();
 
-    emit(UsuarioLoadingState(_currentData, metaData));
+      emit(UsuarioLoadingState(_currentData, metaData));
+    } catch (e) {
+      final metaData = _countUsuarios();
+      emit(UsuarioErrorState(
+        _currentData,
+        metaData,
+        "Erro ao acessar o banco de dados - $e",
+      ));
+    }
   }
 
   Map<String, int> _countUsuarios() {

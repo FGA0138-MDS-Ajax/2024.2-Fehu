@@ -3,17 +3,22 @@ import 'dart:io';
 import 'package:catavento/shared/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:catavento/shared/widgets/dialog.dart';
+import 'package:catavento/bloc/demanda/demanda_bloc.dart';
+import 'package:catavento/shared/widgets/inputs.dart';
 
 class ProdutosCard extends StatefulWidget {
   final String nomeProduto;
+  final String descricaoProduto;
+  final String codigoProduto;
   final String image;
-
-  // final ProdutoBloc bloc; ---- COLOCAR O BLOC AQUI DEPOIS
+  final DemandaBloc bloc; // ---- COLOCAR O BLOC DOS PRODUTOS AQUI DEPOIS
 
   const ProdutosCard(
       {super.key,
       required this.nomeProduto,
-      // required this.bloc,    ------ após colocar o bloc, descomentar aqui
+      required this.bloc,
+      required this.descricaoProduto,
+      required this.codigoProduto,
       required this.image});
 
   @override
@@ -23,18 +28,36 @@ class ProdutosCard extends StatefulWidget {
 }
 
 class ProdutosCardState extends State<ProdutosCard> {
-  /*
-  final TextEditingController nomeController =
-      TextEditingController(text: nome);
-  final TextEditingController codigoController =
-      TextEditingController(text: codigo);
-  final TextEditingController descricaoController =
-      TextEditingController(text: descricao);*/ // descomentar aqui tbm
-
   // dados estáticos temporários
   final String nome = "Bolo Exemplo";
   final String codigo = "CODIGO123";
   final String descricao = "Descrição do produto (Bolo Exemplo) aqui.";
+  final int id = 10; // -- pode apagar isso dps
+  final int order = 11; // --- pode apagar isso dps
+  final DemandaBloc bloc = DemandaBloc();
+
+  late final TextEditingController nomeController;
+  late final TextEditingController codigoController;
+  late final TextEditingController descricaoController;
+
+  double get screenHeight => MediaQuery.of(context).size.height;
+  double get screenWidth => MediaQuery.of(context).size.width;
+
+  @override
+  void initState() {
+    super.initState();
+    nomeController = TextEditingController(text: widget.nomeProduto);
+    codigoController = TextEditingController(text: widget.codigoProduto);
+    descricaoController = TextEditingController(text: widget.descricaoProduto);
+  }
+
+  @override
+  void dispose() {
+    nomeController.dispose();
+    codigoController.dispose();
+    descricaoController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +81,7 @@ class ProdutosCardState extends State<ProdutosCard> {
                 ),
               )),
           Container(
-            height: MediaQuery.of(context).size.height * 0.01,
+            height: screenHeight * 0.01,
             color: AppColors.lightPink,
           ),
           Expanded(
@@ -66,7 +89,7 @@ class ProdutosCardState extends State<ProdutosCard> {
             child: Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: screenHeight * 0.02,
                 ),
                 Center(
                   child: Text(
@@ -78,14 +101,14 @@ class ProdutosCardState extends State<ProdutosCard> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
+                  height: screenHeight * 0.03,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildButtonEditar(context),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.01,
+                      width: screenWidth * 0.01,
                     ),
                     _buildButtonInfo(context)
                   ],
@@ -100,14 +123,15 @@ class ProdutosCardState extends State<ProdutosCard> {
 
   Widget _buildButtonEditar(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.04,
-      width: MediaQuery.of(context).size.width * 0.066,
+      height: screenHeight * 0.04,
+      width: screenWidth * 0.066,
       child: ElevatedButton(
         onPressed: () {
-          // _showEditDialog(context, nome, codigo, descricao);
+          _showEditDialog(
+              context, nomeController, codigoController, descricaoController);
         },
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.blue,
+            backgroundColor: AppColors.gradientDarkBlue,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30))),
         child: Text(
@@ -128,7 +152,7 @@ class ProdutosCardState extends State<ProdutosCard> {
               "https://via.placeholder.com/150");
         },
         style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.blue,
+            backgroundColor: AppColors.gradientDarkBlue,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30))),
         child: Text(
@@ -136,6 +160,179 @@ class ProdutosCardState extends State<ProdutosCard> {
           style: TextStyle(fontSize: 12, color: Colors.white),
         ),
       ),
+    );
+  }
+
+  void _showEditDialog(
+    BuildContext context,
+    TextEditingController nomeController,
+    TextEditingController codigoController,
+    TextEditingController descricaoController,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ReusableDialog(
+          title: "Editar Produto",
+          confirmBeforeClose: true,
+          closeRoute: '/dashboardProdutos',
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.receipt_long_rounded,
+                                  color: AppColors.gradientDarkBlue,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  "Informações Gerais",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'FredokaOne',
+                                    color: AppColors.gradientDarkBlue,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Código",
+                                  style: TextStyle(
+                                      color: AppColors.gradientDarkBlue,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: InputTextField(
+                                    hintText: "Código da demanda",
+                                    controller: codigoController,
+                                    labelText: '',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Nome",
+                                  style: TextStyle(
+                                      color: AppColors.gradientDarkBlue,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: InputTextField(
+                                    hintText: "Nome do bolo",
+                                    controller: nomeController,
+                                    labelText: '',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Adicionar Imagem",
+                                  style: TextStyle(
+                                      color: AppColors.gradientDarkBlue,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(width: 10),
+                                Icon(Icons.camera_alt,
+                                    size: 30,
+                                    color: AppColors.gradientDarkBlue),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.circular(16), // Bordas arredondadas
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.search,
+                                  color: AppColors.gradientDarkBlue,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  "Informações Adicionais",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'FredokaOne',
+                                    color: AppColors.gradientDarkBlue,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: InputTextField(
+                                    hintText: "Descrição",
+                                    controller: descricaoController,
+                                    labelText: 'Descrição',
+                                    maxLines: 4,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

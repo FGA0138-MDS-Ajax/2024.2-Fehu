@@ -8,6 +8,7 @@ class ReusableDialog extends StatelessWidget {
   final bool confirmBeforeClose;
   final Color backgroundColor;
   final BorderRadiusGeometry borderRadius;
+  final String? closeRoute;
 
   const ReusableDialog({
     super.key,
@@ -16,6 +17,7 @@ class ReusableDialog extends StatelessWidget {
     this.confirmBeforeClose = false,
     this.backgroundColor = AppColors.lightGray,
     this.borderRadius = const BorderRadius.all(Radius.circular(25)),
+    this.closeRoute,
   });
 
   void _showCloseConfirmationDialog(BuildContext context) {
@@ -24,8 +26,18 @@ class ReusableDialog extends StatelessWidget {
       builder: (context) => ConfirmDialog(
         title: "Confirmar saída",
         contente: "Tem certeza de que deseja fechar esta janela?",
-        onConfirm: () =>
-            Navigator.of(context).popUntil((route) => route.isFirst),
+        onConfirm: () {
+          Navigator.of(context).pop(); // Fecha o ConfirmDialog
+          if (closeRoute != null) {
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              closeRoute!,
+              (route) => false, // Remove todas as rotas anteriores
+            );
+          } else {
+            Navigator.of(context)
+                .pop(); // Comportamento padrão: fecha o ReusableDialog
+          }
+        },
       ),
     );
   }
@@ -44,7 +56,7 @@ class ReusableDialog extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 55, right: 25, top: 25, bottom: 10),
+                      left: 50, right: 25, top: 25, bottom: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
