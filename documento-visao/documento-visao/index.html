@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../documento-requisitos/documento-requisitos/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Documento de Visão - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visao-do-produto-e-projeto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentação" class="md-header__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Visão
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentação" class="md-nav__button md-logo" aria-label="Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Documentação
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação do Projeto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisões
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 VISÃO GERAL DO PRODUTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 VISÃO GERAL DO PRODUTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Tecnologias a Serem Utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 VISÃO GERAL DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 VISÃO GERAL DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 PROCESSO DE DESENVOLVIMENTO DE SOFTWARE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 DECLARAÇÃO DE ESCOPO DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 DECLARAÇÃO DE ESCOPO DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Backlog do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Perfis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Tabela de Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 REFERÊNCIAS BIBLIOGRÁFICAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-requisitos/documento-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-plano-testes/documento-plano-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 21/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-24-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 24/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-04-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 04/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-09-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 09/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-13-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 13/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-15-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 15/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-16-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 16/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-18-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 18/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-06-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 06/01
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-08-01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ata 08/01
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisões
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 VISÃO GERAL DO PRODUTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 VISÃO GERAL DO PRODUTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Tecnologias a Serem Utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 VISÃO GERAL DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 VISÃO GERAL DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 PROCESSO DE DESENVOLVIMENTO DE SOFTWARE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 DECLARAÇÃO DE ESCOPO DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 DECLARAÇÃO DE ESCOPO DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Backlog do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Perfis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Tabela de Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 REFERÊNCIAS BIBLIOGRÁFICAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="visao-do-produto-e-projeto">VISÃO DO PRODUTO E PROJETO</h1>
+<h2 id="historico-de-revisoes">Histórico de Revisões</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição da Alteração</th>
+<th style="text-align: center;">Nome(s) Integrante(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">14/11/2024</td>
+<td style="text-align: center;">Redação inicial do capítulo 1, pendente alinhamento de ideias com a equipe.</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">15/11/2024</td>
+<td style="text-align: center;">Instanciação do diagrama de ciclo de vida, justificativa da excolha do ScrumXP como metodologia e composição da organização do projeto</td>
+<td style="text-align: center;">Henrique Bernardes e Letícia Arisa</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">22/11/2024</td>
+<td style="text-align: center;">Escrita inicial do capítulo 3, descrevendo o processo de desenvolvimento de software</td>
+<td style="text-align: center;">José Augusto, Gabriela Dourado e Maria Samara Alves</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">22/11/2024</td>
+<td style="text-align: center;">Escrita dos perfis e composição da tabela de backlog do produto</td>
+<td style="text-align: center;">Henrique Bernardes, José Augusto e Maria Eduarda Quaresma</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">25/11/2024</td>
+<td style="text-align: center;">Continuação da composição da tabela de backlog e escrita dos cenários</td>
+<td style="text-align: center;">Henrique Bernardes</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">25/11/2024</td>
+<td style="text-align: center;">Escrita da matriz de comunicação</td>
+<td style="text-align: center;">Maria Eduarda Quaresma e Danielle Soares</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">27/11/2024</td>
+<td style="text-align: center;">Escrita do gerenciamento de riscos</td>
+<td style="text-align: center;">Mariana Pereira</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.8</td>
+<td style="text-align: center;">29/11/2024</td>
+<td style="text-align: center;">Detalhamento nos tópicos de “planejamento de fases e/ou iterações do projeto,” “cenários” e “tabela do backlog”.</td>
+<td style="text-align: center;">Henrique Bernardes</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.9</td>
+<td style="text-align: center;">02/12/2024</td>
+<td style="text-align: center;">Escrita final dos tópicos “matriz de comunicação”, “gerenciamento de riscos” e “critérios de replanejamento”.</td>
+<td style="text-align: center;">Maria Eduarda e  Mariana Pereira</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">02/12/2024</td>
+<td style="text-align: center;">Revisão final para entrega</td>
+<td style="text-align: center;">Henrique Bernardes</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.1</td>
+<td style="text-align: center;">06/12/2024</td>
+<td style="text-align: center;">Adaptação do backlog das sprints 2, 3 e 4 de acordo com as demandas relacionadas a refatoração do código de acordo com a arquitetura</td>
+<td style="text-align: center;">Henrique Bernardes</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.2</td>
+<td style="text-align: center;">10/12/2024</td>
+<td style="text-align: center;">Revisão da tabela de organização da equipe e retificação feita sobre a matriz de comunicação</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.3</td>
+<td style="text-align: center;">21/12/2024</td>
+<td style="text-align: center;">Revisão da tabela de backlog e da declaração de posição do produto</td>
+<td style="text-align: center;">José Augusto</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-visao-geral-do-produto">1 VISÃO GERAL DO PRODUTO</h2>
+<h3 id="11-produto">1.1 Produto</h3>
+<p>A empresa Catavento, cliente da equipe Fehu, é especializada na manufatura e comercialização de produtos para festas, com destaque para os bolos "fakes". No momento, o processo produtivo desses bolos é gerenciado de maneira informal e manual, utilizando uma planilha de demandas. Esta planilha é impressa e distribuída entre os departamentos responsáveis. Após a conclusão das demandas, os funcionários registram as informações diretamente na planilha, o que pode gerar inconsistências e dificultar o acompanhamento do processo.</p>
+<p>Além disso, a cliente mencionou situações em que os funcionários, conscientes de todas as demandas futuras, tendem a priorizar a entrega de tarefas mais simples em detrimento das que exigem maior esforço. </p>
+<p>Nesse contexto, surge a oportunidade de implementar uma solução tecnológica que centralize o controle das demandas. Essa abordagem permitirá que: </p>
+<ul>
+<li>Gerentes de cada departamento tenham acesso em tempo real ao status de cada demanda, assegurando um melhor controle da produção. </li>
+<li>Funcionários possam visualizar apenas a demanda atual, evitando a priorização de tarefas específicas em detrimento de outras, o que promoverá uma gestão mais equilibrada e eficiente das atividades. </li>
+</ul>
+<h3 id="12-declaracao-de-posicao-do-produto">1.2 Declaração de Posição do Produto</h3>
+<p>Após a identificação do problema e da oportunidade de solução mencionados anteriormente, apresentamos no Quadro 1, a seguir, a declaração de posição do produto. Esta declaração compila as informações essenciais sobre a visão da equipe em relação ao produto a ser desenvolvido, as necessidades que ele atende e sua posição no mercado atual. </p>
+<p><strong><p style="text-align: center;">Quadro 1: Declaração de Posição do Produto</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Para:</td>
+<td style="text-align: left;">Empresa Catavento</td>
+</tr>
+<tr>
+<td style="text-align: right;">Necessidade:</td>
+<td style="text-align: left;">uma solução tecnológica para a gerência de demandas</td>
+</tr>
+<tr>
+<td style="text-align: right;">O (nome do produto):</td>
+<td style="text-align: left;">Gestão Catavento é um app</td>
+</tr>
+<tr>
+<td style="text-align: right;">Que:</td>
+<td style="text-align: left;">centraliza as demandas de cada departamento, permitindo o lançamento e acompanhamento de demandas em tempo real do computador pelos gerentes e a apresentação das demandas em forma estritamente sequencial aos funcionários utilizando o app mobile</td>
+</tr>
+<tr>
+<td style="text-align: right;">Ao contrário:</td>
+<td style="text-align: left;">tecnologias voltadas para o gerenciamento de projetos como o Trello ou o Slack poderiam substituir o método atual de gerenciamento</td>
+</tr>
+<tr>
+<td style="text-align: right;">Nosso produto:</td>
+<td style="text-align: left;">porém, será uma ferramenta especializada em atender nas necessidades da cliente, adaptada ao contexto produtivo da empresa.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;"> Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="13-objetivos-do-produto">1.3 Objetivos do Produto</h3>
+<p>O aplicativo tem como principal objetivo otimizar o gerenciamento das demandas do processo produtivo dos bolos "fakes". Ele substituirá a abordagem atual, que utiliza uma planilha impressa, por uma solução tecnológica que facilitará o controle da produção. </p>
+<p>Adicionalmente, o aplicativo será capaz de gerar relatórios de desempenho para cada funcionário, o que permitirá um cálculo mais eficiente dos bônus por atingimento de metas específicas e contribuirá para uma gestão mais eficaz da equipe.</p>
+<h3 id="14-tecnologias-a-serem-utilizadas">1.4 Tecnologias a Serem Utilizadas</h3>
+<p>Para o desenvolvimento do projeto, serão empregadas as seguintes tecnologias: </p>
+<ul>
+<li>Linguagem Dart: Esta é a principal linguagem utilizada, tanto para a definição do frontend através do Flutter, quanto para a implementação da lógica de negócios e a comunicação com o Supabase. </li>
+<li>Flutter: Um framework de desenvolvimento mobile multiplataforma, que será utilizado na construção do frontend da aplicação. </li>
+<li>Supabase: Um serviço de backend que oferece diversas ferramentas, incluindo comunicação com um banco de dados PostgreSQL e autenticação de usuários com diferentes níveis de acesso, entre outros recursos. </li>
+</ul>
+<h2 id="2-visao-geral-do-projeto">2 VISÃO GERAL DO PROJETO</h2>
+<h3 id="21-ciclo-de-vida-do-projeto-de-desenvolvimento-de-software">2.1 Ciclo de vida do projeto de desenvolvimento de software</h3>
+<p><strong><p style="text-align: center;">Figura 1: Ciclo de Vida do Projeto</p></strong></p>
+<p><img alt="Ciclo de Vida do Projeto" src="../assets/ciclo-de-vida-do-projeto.jpg" /></p>
+<p><strong><p style="text-align: center;"> Fonte: autoria própria (2024)</p></strong></p>
+<p>Primeiramente, o desenvolvimento em prazo limitado (1 semestre) exige a escolha de uma metodologia ágil que permita entregas rápidas e flexibilidade para ajustes ao longo do tempo, além de acomodar mudanças de forma aceitável. De acordo com Wonohardjo et al. (2019): </p>
+<blockquote>
+<p>Scrum is often used to face complex problems in software development process and has been proven to increase productivity and reducing software development cost. Scrum deliver the software in iterations, that means the software is delivered in partial, so any changes or problems can be handled before all parts of software is ready to deliver. (Wonohardjo et al., 2019) </p>
+</blockquote>
+<p>Dessa forma, o produto deve ser entregue de maneira incremental, trabalhando e lançando versões ao longo do desenvolvimento para receber feedback e realizar ajustes necessários antes da versão final.  </p>
+<p>A solução proposta é um aplicativo mobile desenvolvido com Flutter, sendo possível compilar o aplicativo para Android e iOS a partir de uma base de código única, agilizando o desenvolvimento. O backend será suportado por Dart e o banco de dados pelo Supabase. A escolha da linguagem Dart se alinha ao uso do Flutter, facilitando a criação de uma interface com compatibilidade para as funcionalidades do frontend. </p>
+<p>A metodologia ScrumXP foi escolhida por combinar a estrutura do Scrum, que permite ciclos curtos e feedback frequente, com as práticas do <em>Extreme Programming</em> (XP), como o <em>"Pair Programming"</em> e a integração contínua. De acordo com Sahota (2011), conforme citado por dada (2022), as práticas Scrum precisam ser integradas ao XP para garantir um projeto bem-sucedido, embora existam práticas que se sobrepõem entre os dois métodos. Assim, com sprints definidas de 10 dias, é possível lançar incrementos rapidamente, receber <em>feedback</em> e ajustar o desenvolvimento conforme necessário. As práticas do XP, como a refatoração continua e a programação em pares ajudam no desenvolvimento e a manter o código organizado. A flexibilidade proporcionada pelo ScrumXP permite adaptar o projeto a novos requisitos ou alterações de prioridades, maximizando o valor entregue em um semestre para a cliente. </p>
+<p>O projeto será organizado por meio de histórias de usuário, que capturam as necessidades dos usuários e as traduzem em funcionalidades. Reuniões diárias (<em>Daily Scrum</em>) ajudam a manter o progresso alinhado e identificar dificuldades, e ao final de cada sprint serão realizadas <em>Sprint Reviews</em> para revisar o progresso e retrospectivas para identificar o que pode ser melhorado. </p>
+<p>As ferramentas escolhidas para o gerenciamento e desenvolvimento incluem o Figma, para organizar o backlog, acompanhar o progresso das tarefas, composição de diagramas e protótipos, e o GitHub, para controle de versão e integração contínua. O Microsoft Teams será utilizado para comunicação rápida entre a equipe, Visual Studio Code para programação em Dart e Flutter e programação em pares com extensões. </p>
+<p>Logo, conclui-se que a escolha do ScrumXP é apropriada devido à necessidade de ciclos curtos e <em>feedback</em> contínuo, essenciais para o projeto devido à curta duração e com requisitos mutáveis, além dos métodos e ferramentas suportarem um desenvolvimento incremental, ágil e prático. </p>
+<h3 id="22-organizacao-do-projeto">2.2 Organização do Projeto</h3>
+<p>Para desenvolver o código cada membro da equipe desempenhará um papel baseado nas suas competências individuais e na necessidade do projeto, como pode ser observado no quadro abaixo. Esta divisão, porém, não tem o objetivo de limitar a atuação dos membros da equipe a apenas os papeis estabelecidos abaixo, ao passo que as demandas do projeto mudam a organização interna da equipe se adapta a fim de suprir a necessidade. </p>
+<p><strong><p style="text-align: center;">Quadro 2: Organização da Equipe</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Papel</th>
+<th style="text-align: center;">Atribuições</th>
+<th style="text-align: center;">Responsável</th>
+<th style="text-align: center;">Participantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Desenvolvedor</td>
+<td style="text-align: center;">Codificar o produto, codificar testes unitários, realizar refatoração</td>
+<td style="text-align: center;">José</td>
+<td style="text-align: center;">Daniel, Danielle, Gabriela, José, Leticia, Maria Eduarda, Maria Samara, Mariana, Pedro</td>
+</tr>
+<tr>
+<td style="text-align: center;">Dono do Produto</td>
+<td style="text-align: center;">Atualizar o escopo do produto, organizar o escopo das sprints, validar as entregas</td>
+<td style="text-align: center;">José</td>
+<td style="text-align: center;">José</td>
+</tr>
+<tr>
+<td style="text-align: center;">Analista de Qualidade</td>
+<td style="text-align: center;">Garantir a qualidade do produto, garantir o cumprimento do conceito de pronto, realizar inspeções de código, executar testes, identificação de erros e defeitos, planejamento de testes</td>
+<td style="text-align: center;">Maria Eduarda</td>
+<td style="text-align: center;">Maria Eduarda, Mariana</td>
+</tr>
+<tr>
+<td style="text-align: center;">Analista de Requisitos</td>
+<td style="text-align: center;">Fazer o levantamento dos requisitos, analisar e documentar os requisitos, priorizar os requisitos de acordo com o objetivo do produto, gerenciar as mudanças de requisitos</td>
+<td style="text-align: center;">Pedro</td>
+<td style="text-align: center;">Maria Eduarda, Pedro</td>
+</tr>
+<tr>
+<td style="text-align: center;">Designer de Protótipos</td>
+<td style="text-align: center;">Criar modelos iniciais do produto, fazer a validação das do design, interações e funcionalidades</td>
+<td style="text-align: center;">Danielle</td>
+<td style="text-align: center;">Danielle, Leticia, Mariana, Maria Samara, Daniel</td>
+</tr>
+<tr>
+<td style="text-align: center;">Cliente</td>
+<td style="text-align: center;">Validar os requisitos e protótipos, fornecer feedbacks</td>
+<td style="text-align: center;">---</td>
+<td style="text-align: center;">Poliana</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;"> Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="23-planejamento-das-fases-eou-iteracoes-do-projeto">2.3 Planejamento das Fases e/ou Iterações do Projeto</h3>
+<p>Primeiramente, depois de uma análise em conjunto do time, decidiu-se que o mais adequado seria dividir o trabalho em 5 <em>sprints</em>, sendo que, de 2 em 2, forma-se uma release. As <em>sprints</em> que contêm itens do <em>backlog</em> mais importantes foram atribuídas para o início e meio do projeto e, as que contêm itens do <em>backlog</em> menos críticos, foram deixadas para o final. A menor quantidade de atividades a serem feitas nas últimas sprints foi pensada para acomodar possíveis débitos técnicos restantes de alguma <em>sprints</em>. Dessa forma, o quadro 3 mostra em detalhes o planejamento das <em>sprints</em>: </p>
+<p><strong><p style="text-align: center;">Quadro 3: Planejamento de Sprints</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Sprint</th>
+<th style="text-align: center;">Produto (Entrega)</th>
+<th style="text-align: center;">Data Início</th>
+<th style="text-align: center;">Data Fim</th>
+<th style="text-align: center;">Entregável(eis)</th>
+<th style="text-align: center;">Responsáveis</th>
+<th style="text-align: center;">% conclusão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Sprint 1</td>
+<td style="text-align: center;">Integração Básica e Sistema de gerência de demandas.</td>
+<td style="text-align: center;">25/11/2024</td>
+<td style="text-align: center;">05/12/2024</td>
+<td style="text-align: center;">Integração com planilha do Microsoft 365; CRUD de demandas; Página do gerente/admin para gerenciar demandas</td>
+<td style="text-align: center;">Frontend, Backend, Banco de dados, Testes</td>
+<td style="text-align: center;">20%</td>
+</tr>
+<tr>
+<td style="text-align: center;">Sprint 2</td>
+<td style="text-align: center;">Sistema de gerência de usuários tipo funcionário e sistema de login.</td>
+<td style="text-align: center;">05/12/2024</td>
+<td style="text-align: center;">15/12/2024</td>
+<td style="text-align: center;">CRUD de funcionários; Página de gerenciamento de funcionários; Sistema de autenticação; Página de login</td>
+<td style="text-align: center;">Frontend, Backend, Banco de dados, Testes</td>
+<td style="text-align: center;">40%</td>
+</tr>
+<tr>
+<td style="text-align: center;">Sprint 3</td>
+<td style="text-align: center;">Funcionalidades focadas no funcionário e na navegação no aplicativo.</td>
+<td style="text-align: center;">15/12/2024</td>
+<td style="text-align: center;">25/12/2024</td>
+<td style="text-align: center;">Página de desempenho de funcionários; Página de demandas para funcionários; Menu de navegação lateral</td>
+<td style="text-align: center;">Frontend, Backend, Banco de dados, Testes</td>
+<td style="text-align: center;">60%</td>
+</tr>
+<tr>
+<td style="text-align: center;">Sprint 4</td>
+<td style="text-align: center;">Metas de funcionários e prioridades</td>
+<td style="text-align: center;">25/12/2024</td>
+<td style="text-align: center;">05/01/2024</td>
+<td style="text-align: center;">Página de metas de funcionários; Quadro de prioridades</td>
+<td style="text-align: center;">Frontend, Backend, Banco de dados, Testes</td>
+<td style="text-align: center;">80%</td>
+</tr>
+<tr>
+<td style="text-align: center;">Sprint 5</td>
+<td style="text-align: center;">Relatórios e refinamentos</td>
+<td style="text-align: center;">05/01/2024</td>
+<td style="text-align: center;">15/01/2024</td>
+<td style="text-align: center;">Geração de relatórios; Ajustes e refinamentos com base no feedback</td>
+<td style="text-align: center;">Frontend, Backend, Banco de dados, Testes</td>
+<td style="text-align: center;">100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="24-matriz-de-comunicacao">2.4 Matriz de Comunicação</h3>
+<p>A matriz de Comunicação no nosso documento de visão apresentada a seguir, descreve de forma estruturada os principais processos de interação entre os envolvidos no projeto. Cada atividade está detalhada quanto à sua descrição, os responsáveis por executá-la, a periodicidade com que ocorre e os produtos gerados como resultado. Esse planejamento visa garantir a eficiência na troca de informações, o alinhamento entre as partes interessadas e a entrega consistente dos objetivos do projeto, fortalecendo a colaboração e a organização das tarefas ao longo do desenvolvimento.</p>
+<p><strong><p style="text-align: center;">Quadro 4: Matriz de Comunicações</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Área/Envolvidos</th>
+<th style="text-align: center;">Periodicidade</th>
+<th style="text-align: center;">Produtos Gerados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Comunicação rápida entre as duplas de desenvolvimento para relatar atividades feitas no dia, tirar dúvidas e discutir tarefas.</td>
+<td style="text-align: center;">Duplas de desenvolvimento</td>
+<td style="text-align: center;">Diariamente</td>
+<td style="text-align: center;">Relato de atividades</td>
+</tr>
+<tr>
+<td style="text-align: center;">Planejar o trabalho da sprint, definir metas e organizar tarefas no backlog.</td>
+<td style="text-align: center;">Equipe do Projeto</td>
+<td style="text-align: center;">Início de Sprint</td>
+<td style="text-align: center;">Ata de reunião, Backlog atualizado, plano da sprint.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Acompanhar as atividades em andamento, identificar riscos, compromissos e ações pendentes.</td>
+<td style="text-align: center;">Equipe do projeto</td>
+<td style="text-align: center;">Meio de Sprint</td>
+<td style="text-align: center;">Ata de reunião, Relatório de situação do projeto</td>
+</tr>
+<tr>
+<td style="text-align: center;">Comunicar situação do projeto para cliente e obter feedbacks, validar releases e atualizar o backlog</td>
+<td style="text-align: center;">Equipe, Cliente</td>
+<td style="text-align: center;">A cada 20 dias</td>
+<td style="text-align: center;">Ata de reunião, Relatório de situação do projeto, backlog atualizado</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>Após orientações recebidas da monitora do grupo, foi determinado que a comunicação com a cliente ocorrerá sempre no final de uma sprint, permitindo assim que a cliente avalie o desenvolvimento realizado e, por consequência, que a equipe ajuste o planejamento baseado no <em>feedback</em> recebido. </p>
+<h3 id="25-gerenciamento-de-riscos">2.5 Gerenciamento de Riscos</h3>
+<p>O Quadro de Gerenciamento de Riscos apresentada a seguir, detalha os principais desafios e incertezas que podem impactar o andamento do projeto. Cada risco identificado é avaliado quanto ao grau de exposição, e estratégias de mitigação são propostas para reduzir suas consequências. Além disso, um plano de contingência é apresentado para lidar com possíveis ocorrências, garantindo a continuidade e o sucesso do projeto mesmo diante de adversidades. Esse processo de análise e planejamento permite antecipar problemas e manter a equipe preparada para enfrentá-los de maneira eficaz.</p>
+<p><strong><p style="text-align: center;">Quadro 5: Gerenciamento de Riscos</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Risco</th>
+<th style="text-align: center;">Grau de exposição</th>
+<th style="text-align: center;">Mitigação</th>
+<th style="text-align: center;">Plano de contingência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Atraso nas entregas de funcionalidades devido a mudanças de requisitos.</td>
+<td style="text-align: center;">Alto</td>
+<td style="text-align: center;">Revisar os requisitos com a cliente e documentar alterações.</td>
+<td style="text-align: center;">Priorizar funcionalidades mais importantes e realocar recursos para requisitos mais críticos.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falta de capacidade técnica da equipe de desenvolvimento e pouca familiaridade com as tecnologias.</td>
+<td style="text-align: center;">Médio</td>
+<td style="text-align: center;">Realizar sessões de estudos e pair programming para nivelar o nível de conhecimento.</td>
+<td style="text-align: center;">Buscar fontes de conhecimentos externos e solicitar apoio dos monitores.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falta de comunicação entre os membros do projeto.</td>
+<td style="text-align: center;">Alta</td>
+<td style="text-align: center;">Realizar Daily Scrum (reuniões diárias) e usar meios de comunicação, como o Teams.</td>
+<td style="text-align: center;">Acompanhar e revisar o progresso e realocar tarefas se necessário.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falha de comunicação com a cliente e desalinhamento de expectativa.</td>
+<td style="text-align: center;">Médio</td>
+<td style="text-align: center;">Realizar reuniões regulares com a cliente para apresentar o progresso e receber feedbacks.</td>
+<td style="text-align: center;">Documentar as possíveis alterações e revisar o backlog.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Conflitos de integração</td>
+<td style="text-align: center;">Alto</td>
+<td style="text-align: center;">Realizar testes de integração contínua.</td>
+<td style="text-align: center;">Intensificar os testes de integração.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Perda de dados durante a importação de planilhas</td>
+<td style="text-align: center;">Alto</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="26-criterios-de-replanejamento">2.6 Critérios de Replanejamento</h3>
+<p>A tabela de Critérios de Replanejamento apresentada a seguir, estabelece as condições sob as quais ajustes no planejamento do projeto se tornam necessários. Com base nos riscos identificados, o quadro define critérios objetivos para a tomada de decisão e especifica as ações a serem adotadas em cada cenário. Esse processo assegura que o projeto permaneça alinhado aos seus objetivos, mesmo diante de atrasos, desafios técnicos ou problemas de comunicação, permitindo ajustes ágeis e eficientes para minimizar impactos negativos. </p>
+<p><strong><p style="text-align: center;">Quadro 6: Critérios de Replanejamento</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Risco</th>
+<th style="text-align: center;">Critério de Replanejamento</th>
+<th style="text-align: center;">Ação em Caso de Replanejamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Atraso nas entregas de funcionalidades devido a mudanças de requisitos.</td>
+<td style="text-align: center;">Atraso acumulado superior a 1 sprint em relação ao cronograma planejado.</td>
+<td style="text-align: center;">Repriorizar funcionalidades e ajustar o backlog</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falta de capacidade técnica da equipe de desenvolvimento e pouca familiaridade com as tecnologias.</td>
+<td style="text-align: center;">Não conclusão, dentro do prazo, de 2 sprints consecutivas devido à falta de conhecimento técnico necessário.</td>
+<td style="text-align: center;">Redistribuir tarefas, alocar tempo para aprendizado e buscar apoio externo.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falta de comunicação entre os membros do projeto.</td>
+<td style="text-align: center;">Mais de 3 atrasos ou retrabalhos em uma sprint devido a problemas de comunicação.</td>
+<td style="text-align: center;">Revisar estratégias e ferramentas de comunicação, redistribuir e reforçar as responsabilidades durante a Sprint Planning.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Falha de comunicação com a cliente e desalinhamento de expectativa.</td>
+<td style="text-align: center;">Divergências não resolvidas em mais de 2 ciclos consecutivos de feedback.</td>
+<td style="text-align: center;">Realizar reuniões regulares com a cliente para apresentar o progresso e receber feedbacks.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Conflitos de integração</td>
+<td style="text-align: center;">Conflitos de integração que afetem funcionalidades principais ou requisitos de prioridade alta, comprometendo entregas críticas.</td>
+<td style="text-align: center;">Alocar mais tempo para testes de integração e refatorar módulos críticos para garantir a funcionalidade essencial do aplicativo.</td>
+</tr>
+<tr>
+<td style="text-align: center;">Perda de dados durante a importação de planilhas</td>
+<td style="text-align: center;">Identificação de quaisquer perdas de dados durante a importação de planilhas</td>
+<td style="text-align: center;">Replanejar e refatorar o fluxo de importação e, em um caso crítico, modificar a estratégia de importação.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h2 id="3-processo-de-desenvolvimento-de-software">3 PROCESSO DE DESENVOLVIMENTO DE SOFTWARE</h2>
+<p>Algumas ferramentas serão utilizadas no decorrer do processo de desenvolvimento de <em>software</em>, assim será preciso o uso de algumas ferramentas como foram apresentadas na seção 2.1. A metodologia utilizada será o Scrum, com o intuito de <em>feedbacks</em> frequentes e ciclos curtos e práticas do Extreme Programming (XP), assim o ScrumXP.  </p>
+<p>Assim, com a utilização do ScrumXP e as ferramentas escolhidas temos uma certa divisão em cada parte do processo de desenvolvimento, explicada em detalhes abaixo e ilustrada na Figura 2 a seguir. </p>
+<ul>
+<li>Reunião de <em>sprints</em> e <em>dailies</em>: O Teams será o meio de comunicação para reuniões para tomada de decisões, alinhamentos de ideias e alterações. Além da ferramenta WhatsApp para comunicações mais rápidas. </li>
+<li><em>Backend</em> – Linguagem Dart e o banco de dados pelo Supabase; </li>
+<li><em>Frontend</em> – Figma, Flutter e outras ferramentas de estilização. </li>
+<li>Realizar testes: Inicialmente, serão realizados testes de unidade no backend para validar funcionalidades específicas, assegurando que cada parte do sistema funcione de forma independente. Em seguida, os testes de integração verificarão a comunicação entre o backend (incluindo o Supabase) e o <em>frontend</em>, garantindo que os dados sejam transmitidos e manipulados corretamente. O <em>frontend</em> será testado manualmente para avaliar o comportamento das funcionalidades, navegação e experiência do usuário. Ferramentas como o Figma serão usadas para confirmar que o design está de acordo com o aprovado, garantindo uma interface coesa e usável. Ao final de cada sprint, testes de aceitação serão realizados junto à cliente para validar os requisitos implementados e alinhar possíveis ajustes antes de avançar para a próxima etapa.</li>
+<li>Validar entrega: Teremos uma reunião com a cliente para que possamos alinhar as ideias com a entrega de cada requisito e com a sua aprovação seguir em frente com o desenvolvimento, caso haja uma reprovação, anotamos as sugestões da cliente e nos reuniremos para poder alinhar as nossas novas ideias com as da cliente.</li>
+</ul>
+<p><strong><p style="text-align: center;">Figura 2: Fluxo de Desenvolvimento de Software</p></strong></p>
+<p><img alt="Processo de Desenvolvimento de Software" src="../assets/processo-desenvolvimento-software.png" /></p>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h2 id="4-declaracao-de-escopo-do-projeto">4 DECLARAÇÃO DE ESCOPO DO PROJETO</h2>
+<h3 id="41-backlog-do-produto">4.1 Backlog do Produto</h3>
+<p>Entre os requisitos que compõem o backlog do produto estão as várias telas do aplicativo, a lógica por trás delas e a integração com serviços externos como o Microsoft 365. Os requisitos, assim como o tipo, a prioridade, e outros detalhes de cada requisito, estão descritos na tabela no final deste capítulo. </p>
+<h3 id="42-perfis">4.2 Perfis</h3>
+<p>A princípio, o aplicativo precisaria apenas de dois tipos de perfis: administrador e funcionário (usuário comum). Contudo, tendo em vista o cenário onde a adição ou remoção de um administrador pode ser necessário, faz-se necessário um terceiro perfil que possui todos os atributos de um administrador comum, além da capacidade de adicionar, editar e remover perfis de outros administradores. A elicitação desses requisitos foi feita por meio de reuniões com a cliente e em discussões entre a equipe. O quadro abaixo descreve os tipos de perfis, suas características e permissões. </p>
+<p><strong><p style="text-align: center;">Quadro 7: Perfis de uso e suas permissões</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: center;">Nome do perfil</th>
+<th style="text-align: center;">Características do perfil</th>
+<th style="text-align: center;">Permissões de acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">&lt;1&gt;</td>
+<td style="text-align: center;">Administrador</td>
+<td style="text-align: center;">Responsável pelo gerenciamento das demandas e dos perfis dos funcionários e gerentes.</td>
+<td style="text-align: center;">Adição, edição ou remoção de demandas, perfis de funcionários e gerentes</td>
+</tr>
+<tr>
+<td style="text-align: center;">&lt;2&gt;</td>
+<td style="text-align: center;">Gerente de departamento</td>
+<td style="text-align: center;">Responsável pelo gerenciamento das demandas e dos perfis dos funcionários.</td>
+<td style="text-align: center;">Adição, edição ou remoção de demandas e perfis de funcionários.</td>
+</tr>
+<tr>
+<td style="text-align: center;">&lt;3&gt;</td>
+<td style="text-align: center;">Funcionário</td>
+<td style="text-align: center;">Usuário comum do aplicativo. Pertencem a um departamento, aceitam demandas e completam as etapas referentes a ele.</td>
+<td style="text-align: center;">Aceitação de demandas e finalização de etapas referentes a demandas especificas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="43-cenarios">4.3 Cenários</h3>
+<p>Como forma de tornar mais tangíveis os objetivos do aplicativo, baseados nos requisitos discutidos com a cliente, foram elaborados cenários funcionais que conectam os atores principais às funcionalidades do aplicativo. Esses cenários descrevem interações específicas entre os usuários e o aplicativo, formando uma visualização mais linear e organizada dos requisitos. O objetivo é auxiliar no desenvolvimento das funcionalidades de forma iterativa ao fornecer um ponto de vista mais próximo de como elas devem ser/funcionar. Cada cenário detalha o ator envolvido, o contexto da interação, os passos necessários e o resultado esperado, como mostra o Quadro 8 abaixo: </p>
+<p><strong><p style="text-align: center;">Quadro 8: Cenários Funcionais</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Numeração do cenário</th>
+<th style="text-align: center;">Ator</th>
+<th style="text-align: center;">Contexto</th>
+<th style="text-align: center;">Passos a serem seguidos</th>
+<th style="text-align: center;">Resultado esperado</th>
+<th style="text-align: center;">Sprints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Gerente de departamento</td>
+<td style="text-align: center;">O gerente de departamento deseja cadastrar um conjunto de demandas do dia por meio de uma planilha no microsoft 365</td>
+<td style="text-align: center;">No menu de gerente, clicar em importar lista de demandas, fornecer o link para a planilha e clicar em importar.</td>
+<td style="text-align: center;">Cadastro das demandas no menu de gerente de departamento/e no menu de demandas dos funcionários</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Gerente de departamento</td>
+<td style="text-align: center;">O gerente de departamento deseja cadastrar um funcionário.</td>
+<td style="text-align: center;">Navegar pelo menu de navegação até a aba de funcionários, clicar no botão “cadastrar funcionários,” preencher as informações necessárias e clicar em “cadastrar”</td>
+<td style="text-align: center;">Cadastro de funcionário pelo gerente de departamento e possibilidade de realizar login com usuário e senha cadastrados.</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Todos os usuários</td>
+<td style="text-align: center;">Um usuário deseja entrar no aplicativo</td>
+<td style="text-align: center;">Abrir o aplicativo, preencher usuário e senha e clicar em “Entrar”.</td>
+<td style="text-align: center;">Realização de login na aplicação por meio de uma página inicial</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Gerente de departamento</td>
+<td style="text-align: center;">O gerente deseja ver o desempenho de um funcionário específico.</td>
+<td style="text-align: center;">Pelo menu de navegação, abrir a aba de funcionários e clicar no ícone de informações.</td>
+<td style="text-align: center;">Ver o desempenho individual de um funcionário em uma página.</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Funcionário</td>
+<td style="text-align: center;">O funcionário deseja começar a trabalhar e, para isso, gostaria de aceitar uma demanda</td>
+<td style="text-align: center;">No menu de demandas, clicar em “Iniciar demanda”.</td>
+<td style="text-align: center;">Iniciar uma demanda e ver as subatividades referentes.</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Funcionário / Gerente de Departamento</td>
+<td style="text-align: center;">Um funcionário / gerente de departamento deseja ver a sua meta/ meta específica de um funcionário</td>
+<td style="text-align: center;">Como funcionário, basta, pelo menu de navegação, entrar na página de metas; Como funcionário, basta, pelo menu de navegação, entrar na página de metas.</td>
+<td style="text-align: center;">Ver a meta do funcionário.</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">Gerente de Departamento</td>
+<td style="text-align: center;">Um gerente de departamento deseja atribuir uma prioridade a uma demanda e ver as prioridades das demandas cadastradas</td>
+<td style="text-align: center;">No menu de demandas, basta editar uma demanda específica com um peso e salvar. Para listar as demandas por prioridade, basta procurar a seção “Quadro de prioridades”.</td>
+<td style="text-align: center;">Ver um quadro de prioridades e poder atribuir prioridades a demandas específicas de acordo com pesos.</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">Gerente de Departamento</td>
+<td style="text-align: center;">Um gerente de departamento deseja gerar um relatório relativo a um espaço de tempo específico.</td>
+<td style="text-align: center;">No menu de demandas de gerente de departamento, basta clicar em “Gerar Relatório”, escolher o intervalo de tempo, e clicar em “Exportar Relatório”</td>
+<td style="text-align: center;">Um arquivo contendo o relatório.</td>
+<td style="text-align: center;">5</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<h3 id="44-tabela-de-backlog-do-produto">4.4 Tabela de Backlog do produto</h3>
+<p>O <em>backlog</em> do produto foi elaborado como uma forma de organizar e priorizar os requisitos identificados inicialmente. Ele funciona como uma forma de guia para o desenvolvimento, garantindo que os requisitos mais importantes sejam implementados nas primeiras <em>sprints</em>, como discutido no planejamento de sprints. A tabela apresenta cada requisito com sua respectiva classificação (funcional ou não funcional), nível de prioridade e associação a cenários ou histórias de usuário previamente definidos. </p>
+<p>O <em>backlog</em> do produto foi elaborado como uma forma de organizar e priorizar os requisitos identificados inicialmente. Ele funciona como uma forma de guia para o desenvolvimento, garantindo que os requisitos mais importantes sejam implementados nas primeiras <em>sprints</em>, como discutido no planejamento de <em>sprints</em>. A tabela apresenta cada requisito com sua respectiva classificação (funcional ou não funcional), nível de prioridade e associação a cenários ou histórias de usuário previamente definidos. </p>
+<p><strong><p style="text-align: center;">Tabela 1: Backlog do Produto</p></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Numeração (Cenário / requisito)</th>
+<th style="text-align: center;">Sprint</th>
+<th style="text-align: center;">Nome do requisito</th>
+<th style="text-align: center;">Tipo de requisito (Funcional / não funcional)</th>
+<th style="text-align: center;">Priorização do requisito Must, Should, Could</th>
+<th style="text-align: center;">Descrição suscinta do requisito</th>
+<th style="text-align: center;">User Histories (U.S.) associadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Integração Planilha</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Um sistema que integra uma planilha csv do Microsoft 365 com o aplicativo, podendo incluir novas demandas por meio da planilha.</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder escrever as demandas em uma planilha do Microsoft 365 e, automaticamente, vê-las inclusas no aplicativo.</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">CRUD de demanda</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Um CRUD que permita os gerentes de departamento criarem, editarem e deletarem uma demanda dentro do aplicativo.</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder adicionar, editar, remover ou visualizar uma demanda específica dentro do aplicativo.</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Página do gerente de departamento/admin</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma tela visível aos gerentes de departamento e admin que implemente o CRUD do pedido.</td>
+<td style="text-align: center;">Como gerente de departamento, quero ter acesso a uma página de gerenciamento de demandas e conseguir visualizar a situação das atividades de cada demanda.</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">CRUD Funcionário</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Funções de criar, editar, deletar e visualizar funcionários</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder adicionar, editar, remover ou visualizar uma conta do tipo funcionário.</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Página de gerenciamento de funcionários</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma página que permite os gerentes de departamento gerenciarem os funcionários, como editar, remover ou detalhar informações sobre cada um.</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder gerenciar os funcionários por meio de uma página.</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Página de login</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma tela com os inputs de usuário e senha que verifique a validade dos dados de acordo com o sistema de autenticação.</td>
+<td style="text-align: center;">Como usuário, quero conseguir entrar no sistema por meio de uma simples tela de login.</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Menu de navegação</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Um menu lateral de navegação que permite visitar outras páginas do sistema.</td>
+<td style="text-align: center;">Como funcionário/ gerente de departamento, quero poder navegar pelo aplicativo por meio de um menu lateral de navegação.</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Sistema de autenticação</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Um sistema que verifique as credenciais entradas e permita ou não o acesso respectivo ao gerente de departamento ou funcionário.</td>
+<td style="text-align: center;">Como gerente de departamento, quero que somente os usuários cadastrados possam ter acesso ao sistema.</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Página de desempenho de funcionário</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Should</em></td>
+<td style="text-align: center;">Uma página que mostra o desempenho de um funcionário para o administrador</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder ver o desempenho de um funcionário específico.</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Página de demandas para funcionário</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma página que mostre a demanda atual disponível para trabalhar.</td>
+<td style="text-align: center;">Como funcionário, quero poder iniciar uma demanda por meio de uma página que mostre os detalhes do bolo como o código, uma foto, a descrição e o nome.</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Página de meta do funcionário</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma página que mostre ao gerente de departamento e ao funcionário em si a meta atual imposta a ele e seu progresso para atingi-la</td>
+<td style="text-align: center;">Como funcionário/ gerente de departamento, quero poder ver o progresso da minha meta/meta de um funcionário específico.</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Filtro de demandas por loja</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Should</em></td>
+<td style="text-align: center;">Um filtro por loja na página de demandas do admin</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder filtrar as demandas visualizadas tendo como critério de onde a demanda foi feita</td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Geração de relatório</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Could</em></td>
+<td style="text-align: center;">Um botão que gera um relatório relativo a um espaço de tempo especificado (dia, semana, mês)</td>
+<td style="text-align: center;">Como gerente de departamento, quero poder gerar um relatório de acordo com uma faixa de tempo especificada.</td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">Página de adicionar produtos</td>
+<td style="text-align: center;">Funcional</td>
+<td style="text-align: center;"><em>Must</em></td>
+<td style="text-align: center;">Uma página em que o admin pode adicionar novos produtos</td>
+<td style="text-align: center;">Como administrador, quero poder cadastrar novos produtos, esses produtos devem ter nome, código único, descrição e foto</td>
+</tr>
+</tbody>
+</table>
+<p><strong><p style="text-align: center;">Fonte: autoria própria (2024)</p></strong></p>
+<p>Após diversas tentativas pela equipe foi constatado que o requisito 1 do backlog não poderá ser implementado como envisionado originalmente, por limitações técnicas que vão além do escopo do projeto. Porém, após conversas com a cliente, ficou acordado que a integração com o Microsoft 365 será substituído pela possibilidade de importar os dados de arquivos .xlsx, planilhas do Excel, armazenados no disposito do administrador ou gerente.</p>
+<h2 id="5-referencias-bibliograficas">5 REFERÊNCIAS BIBLIOGRÁFICAS</h2>
+<ol>
+<li>WONOHARDJO, Eduard Pangestu; SUNARYO, Rizky Febriyanto; SUDIYONO, Yusuf. <strong>A systematic review of SCRUM in software development</strong>. JOIV: International Journal on Informatics Visualization, v. 3, n. 2, p. 108-112, 2019. Acesso em: 15 nov. 2024. Disponível em: https://joiv.org/index.php/joiv/article/view/167.</li>
+<li>DADA, Oluwaseun Alexander; SANUSI, Ismaila Temitayo. <strong>The adoption of Software Engineering practices in a Scrum environment</strong>. African Journal of Science, Technology, Innovation and Development, v. 14, n. 6, p. 1429-1446, 2022. Acesso em: 15 nov. 2024. Disponível em: https://journals.co.za/doi/full/10.1080/20421338.2021.1955431. </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
