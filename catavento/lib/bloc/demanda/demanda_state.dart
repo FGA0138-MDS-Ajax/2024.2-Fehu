@@ -26,3 +26,9 @@ class DemandaLoadingState extends DemandaState {
 class DemandaFilterState extends DemandaState {
   DemandaFilterState(super.databaseResponse, super.metaData);
 }
+
+class DemandaErrorState extends DemandaState {
+  final String message;
+
+  DemandaErrorState(super.databaseResponse, super.metaData, this.message);
+}

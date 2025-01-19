@@ -105,7 +105,7 @@ class EmployeeManagement extends StatelessWidget {
           child: BackgroundPage(
             gradientColors: [Color(0xFF75CDF3), Color(0xFFB2E8FF)],
             children: [
-              CustomHeader(title: "Funcionários"),
+              CustomHeader(title: "Funcionários", historyButton: false,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

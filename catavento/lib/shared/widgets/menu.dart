@@ -1,4 +1,5 @@
 import 'package:catavento/constants.dart';
+import 'package:catavento/shared/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catavento/bloc/auth/auth_bloc.dart' as auth_bloc;
@@ -11,41 +12,127 @@ class Navbar extends StatelessWidget {
     return Drawer(
       child: Column(
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: const Text(
-              'João das Couves', // depois alterar aqui pra pegar o nome no banco de dados
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          Container(
+            height: 75,
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.gradientDarkBlue,
+                  AppColors.gradientLightBlue,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            accountEmail: const Text(
-              'Administrador', // depois alterar aqui pra pegar o setor no banco de dados
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-            ),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.grey.shade200,
-              child: const Icon(Icons.person),
-            ),
-            decoration: BoxDecoration(
-              color: Color(0xFFF4D5D7),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.grey.shade200,
+                  child: const Icon(Icons.person, size: 30),
+                ),
+                const SizedBox(width: 16),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'João das Couves',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Administrador',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+          SizedBox(height: 15),
           ListTile(
-            title: const Text('Demandas'),
+            leading: const Icon(Icons.list_alt,
+                color: AppColors.gradientDarkBlue,
+                size: 20), // Ícone de demandas
+            title: const Text(
+              'Demandas',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.gradientDarkBlue,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, homeRoute);
             },
           ),
           ListTile(
-            title: const Text('Funcionários'),
+            leading: const Icon(Icons.group,
+                color: AppColors.gradientDarkBlue,
+                size: 20), // Ícone de funcionários
+            title: const Text(
+              'Funcionários',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.gradientDarkBlue,
+              ),
+            ),
             onTap: () {
               Navigator.pushNamed(context, crudFuncionariosRoute);
             },
           ),
           ListTile(
-            title: const Text('Produtos'),
-            onTap: () {},
+            leading: const Icon(Icons.shopping_cart,
+                color: AppColors.gradientDarkBlue,
+                size: 20), // Ícone de produtos
+            title: const Text(
+              'Produtos',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.gradientDarkBlue,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, produtosRoute);
+            },
           ),
           ListTile(
-            title: const Text('Sair da Conta'),
+            leading: const Icon(Icons.bar_chart,
+                color: AppColors.gradientDarkBlue,
+                size: 20), // Ícone de produtos
+            title: const Text(
+              'Desempenho',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.gradientDarkBlue,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, desempenhoAdminRoute);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout,
+                color: AppColors.gradientDarkBlue, size: 20), // Ícone de sair
+            title: const Text(
+              'Sair da Conta',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: AppColors.gradientDarkBlue,
+              ),
+            ),
             onTap: () {
               context.read<auth_bloc.AuthBloc>().add(auth_bloc.SignOutEvent());
               Navigator.pushNamed(context, loginRoute);

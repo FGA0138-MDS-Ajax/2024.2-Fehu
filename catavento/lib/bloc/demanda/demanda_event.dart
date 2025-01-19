@@ -17,6 +17,8 @@ class DemandaCreate extends DemandaEvent {
   final String descricao;
   final String status;
   final File? foto;
+  final String? data;
+  final String? prazo;
 
   const DemandaCreate({
     required this.nomeDemanda,
@@ -24,6 +26,8 @@ class DemandaCreate extends DemandaEvent {
     required this.descricao,
     this.status = "0",
     this.foto,
+    this.data,
+    this.prazo,
   });
 }
 
@@ -40,14 +44,18 @@ class DemandaUpdate extends DemandaEvent {
   final String nomeDemanda;
   final String codigo;
   final String descricao;
+  final String? data;
+  final String? prazo;
 
-  const DemandaUpdate(
-    this.id,
-    this.order,
-    this.nomeDemanda,
-    this.codigo,
-    this.descricao,
-  );
+  const DemandaUpdate({
+    required this.id,
+    required this.order,
+    required this.nomeDemanda,
+    required this.codigo,
+    required this.descricao,
+    required this.data,
+    required this.prazo,
+  });
 }
 
 class DemandaLoading extends DemandaEvent {}

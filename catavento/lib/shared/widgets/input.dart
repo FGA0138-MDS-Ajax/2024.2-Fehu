@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:catavento/shared/theme/colors.dart';
 
 class Inputs extends StatefulWidget {
   final String text;
@@ -23,7 +24,10 @@ class InputsState extends State<Inputs>{
   @override
   Widget build(BuildContext context) {
 
-    return Row(
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.05,
+      width: MediaQuery.of(context).size.width * 0.3,
+      child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
 
@@ -32,7 +36,8 @@ class InputsState extends State<Inputs>{
           widget.text,
           style: TextStyle(
             fontSize: 15,
-            color: Colors.black
+            color: AppColors.blue,
+            fontWeight: FontWeight.bold
           ),
         ),
 
@@ -52,8 +57,13 @@ class InputsState extends State<Inputs>{
                 hintText: widget.hint?? '',
                 filled: true,
                 fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10)
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.mediumPink) ,
+                  borderRadius: BorderRadius.circular(15)
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.mediumPink) ,
+                  borderRadius: BorderRadius.circular(15)
                 ),
                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10)
               ),
@@ -62,6 +72,8 @@ class InputsState extends State<Inputs>{
           
         ),
       ],
+    ),
     );
+    
   }
 }

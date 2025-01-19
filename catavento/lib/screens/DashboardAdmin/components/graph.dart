@@ -22,8 +22,8 @@ class PizzaChart extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return SizedBox(
-          width: constraints.maxWidth,
-          height: constraints.maxHeight,
+          width: constraints.maxWidth * 0.4,
+          height: constraints.maxHeight * 0.4,
           child: PieChart(
             PieChartData(
               sections: [

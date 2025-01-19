@@ -25,5 +25,6 @@ class UsuarioLoadingState extends UsuarioState {
 
 class UsuarioErrorState extends UsuarioState {
   final String message;
-  UsuarioErrorState(this.message, super.databaseResponse, super.metaData);
+
+  UsuarioErrorState(super.databaseResponse, super.metaData, this.message);
 }
