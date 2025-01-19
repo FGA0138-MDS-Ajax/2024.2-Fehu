@@ -1,7 +1,7 @@
 import 'package:catavento/bloc/auth/auth_bloc.dart' as auth_bloc;
 import 'package:catavento/bloc/demanda/demanda_bloc.dart';
-import 'package:catavento/bloc/login/login_bloc.dart';
-import 'package:catavento/bloc/registration/registration_bloc.dart';
+// import 'package:catavento/bloc/login/login_bloc.dart';
+// import 'package:catavento/bloc/registration/registration_bloc.dart';
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
 import 'package:catavento/constants.dart';
 import 'package:catavento/core/di/dependency_injection.dart';
@@ -22,13 +22,13 @@ void main() async {
         BlocProvider(create: (context) => DemandaBloc()..add(DemandaLoading())),
         BlocProvider(create: (context) => UsuarioBloc()..add(UsuarioLoading())),
         BlocProvider(
-            create: (_) => getIt<auth_bloc.AuthBloc>()
-              ..add(auth_bloc.AuthInitialCheckRequested())),
-        BlocProvider(
-            create: (_) => getIt<LoginBloc>()..add(LoginButtonPressed())),
-        BlocProvider(
-            create: (_) => getIt<RegistrationBloc>()
-              ..add(RegistrationRegisterButtonPressed()))
+            create: (context) =>
+                getIt<auth_bloc.AuthBloc>()..add(auth_bloc.CheckAuthEvent())),
+        // BlocProvider(
+        //     create: (_) => getIt<LoginBloc>()..add(LoginButtonPressed())),
+        // BlocProvider(
+        //     create: (_) => getIt<RegistrationBloc>()
+        //       ..add(RegistrationRegisterButtonPressed()))
       ],
       child: MaterialApp(
         title: "Gestão Catavento",
@@ -61,30 +61,29 @@ class LoadView extends StatelessWidget {
         ),
       ),
       builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-            return BlocConsumer<auth_bloc.AuthBloc, auth_bloc.AuthState>(
-              listener: (context, state) {
-                if (state is auth_bloc.AuthUserUnauthenticated) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const LoginForm()));
-                }
-                if (state is auth_bloc.AuthUserAuthenticated) {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const DashBoardAdmin()));
-                }
-              },
-              builder: (context, state) => const CircularProgressIndicator(),
-            );
-
-          default:
-            return const CircularProgressIndicator();
+        if (snapshot.connectionState == ConnectionState.done) {
+          return BlocConsumer<auth_bloc.AuthBloc, auth_bloc.AuthState>(
+            listener: (context, state) {
+              if (state is auth_bloc.AuthError) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const LoginForm()));
+              }
+              if (state is auth_bloc.AuthAuthenticated) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EmployeeManagement()));
+              }
+            },
+            builder: (context, state) {
+              if (state is auth_bloc.AuthLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return const LoginForm();
+            },
+          );
+        } else {
+          return const Center(child: CircularProgressIndicator());
         }
       },
     );

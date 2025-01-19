@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:catavento/domain/repositories/authentication/i_authentication_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -10,42 +11,70 @@ part 'auth_state.dart';
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IAuthenticationRepository _authenticationRepository;
-  StreamSubscription<User?>? _userSubscription;
+  // StreamSubscription<User?>? _userSubscription;
 
   AuthBloc(this._authenticationRepository) : super(AuthInitial()) {
-    on<AuthInitialCheckRequested>(_onInitialAuthChecked);
-    on<AuthLogoutButtonPressed>(_onLogoutButtonPressed);
-    on<AuthOnCurrentUserChanged>(_onCurrentUserChanged);
-
-    _startUserSubscription();
+    on<SignUpEvent>(_onSignUpEvent);
+    on<SignInEvent>(_onSignInEvent);
+    on<SignOutEvent>(_onSignOut);
+    on<CheckAuthEvent>(_onCheckAuthEvent);
+    // _startUserSubscription();
   }
 
-  Future<void> _onInitialAuthChecked(
-      AuthInitialCheckRequested event, Emitter<AuthState> emit) async {
-    User? signedInUser = _authenticationRepository.getSignedInUser();
-    signedInUser != null
-        ? emit(AuthUserAuthenticated(signedInUser))
-        : emit(AuthUserUnauthenticated());
+  Future<void> _onSignUpEvent(
+      SignUpEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+
+    try {
+      await _authenticationRepository.signUpWithEmailAndPassword(
+          email: event.email, password: event.password);
+      final user = await _authenticationRepository.getCurrentUser();
+
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthError("Falha ao criar conta. Verifique suas credenciais."));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
   }
 
-  Future<void> _onLogoutButtonPressed(
-      AuthLogoutButtonPressed event, Emitter<AuthState> emit) async {
+  Future<void> _onSignInEvent(
+      SignInEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+
+    try {
+      await _authenticationRepository.signInWithEmailAndPassword(
+          email: event.email, password: event.password);
+      final user = await _authenticationRepository.getCurrentUser();
+
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthError("Falha ao fazer login."));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> _onSignOut(SignOutEvent event, Emitter<AuthState> emit) async {
     await _authenticationRepository.signOut();
+    emit(AuthInitial());
   }
 
-  Future<void> _onCurrentUserChanged(
-          AuthOnCurrentUserChanged event, Emitter<AuthState> emit) async =>
-      event.user != null
-          ? emit(AuthUserAuthenticated(event.user!))
-          : emit(AuthUserUnauthenticated());
-
-  void _startUserSubscription() => _userSubscription = _authenticationRepository
-      .getCurrentUser()
-      .listen((user) => add(AuthOnCurrentUserChanged(user)));
-
-  @override
-  Future<void> close() {
-    _userSubscription?.cancel();
-    return super.close();
+  Future<void> _onCheckAuthEvent(CheckAuthEvent event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      final user = await _authenticationRepository.getCurrentUser();
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthInitial());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
   }
 }

@@ -1,17 +1,17 @@
-import 'package:catavento/bloc/login/login_bloc.dart';
+import 'package:catavento/bloc/auth/auth_bloc.dart';
+import 'package:catavento/main.dart';
+import 'package:catavento/screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ButtonSignIn extends StatefulWidget {
-  final Widget title;
   final Icon icon;
   final bool isLoading;
 
-  final Function() onPressed;
+  final VoidCallback onPressed;
 
   const ButtonSignIn(
       {super.key,
-      required this.title,
       required this.icon,
       required this.onPressed,
       required this.isLoading});
@@ -23,14 +23,10 @@ class ButtonSignIn extends StatefulWidget {
 class _ButtonSignInState extends State<ButtonSignIn> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) => InkWell(
-              onTap: () {
-                state.isSubmitting() || !state.isValid
-                  ? null
-                  : context.read<LoginBloc>().add(LoginButtonPressed());
-                widget.onPressed();
-              },
+              onTap: () {}
+              ,
               child: Container(
                   height: 45,
                   width: 114,
@@ -48,7 +44,10 @@ class _ButtonSignInState extends State<ButtonSignIn> {
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                widget.title,
+                                Text(
+                                  "Entrar",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                                 SizedBox(
                                   width: 5,
                                 ),

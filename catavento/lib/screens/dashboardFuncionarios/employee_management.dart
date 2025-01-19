@@ -1,4 +1,5 @@
 import 'package:catavento/bloc/usuario/usuario_bloc.dart';
+import 'package:catavento/constants.dart';
 import 'package:catavento/screens/Login/login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,9 +13,8 @@ import 'package:catavento/shared/widgets/blocks.dart';
 import 'package:catavento/shared/widgets/showDialog.dart';
 import 'package:catavento/shared/widgets/menu.dart';
 import 'components/funcionarioCard.dart';
-import 'components/register_button.dart';
 
-import 'package:catavento/bloc/registration/registration_bloc.dart';
+import 'package:catavento/bloc/auth/auth_bloc.dart';
 
 class EmployeeManagement extends StatelessWidget {
   final List<Map<String, String>> ativAndamento = [
@@ -31,34 +31,14 @@ class EmployeeManagement extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usuarioController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
-  final TextEditingController _confirmarSenhaController =
-      TextEditingController();
+  // final TextEditingController _confirmarSenhaController =
+  //     TextEditingController();
 
   EmployeeManagement({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegistrationBloc, RegistrationState>(
-      listenWhen: (previous, current) => current.isSubmissionSucessOrFailure(),
-      listener: (context, state) {
-        if (state.formSubmissionStatus == FormSubmissionStatus.success) {
-          Showdialog(
-              title:
-                  'Funcionário registrado com sucesso. Por favor, verifique o e-mail cadastrado.');
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => const LoginForm()));
-        }
-        if (state.formSubmissionStatus == FormSubmissionStatus.failure) {
-          Showdialog(title: 'Falha no cadastro do funcionário.');
-        }
-        if (state.formSubmissionStatus ==
-            FormSubmissionStatus.confirmPasswordNotMatchWithPassword) {
-          Showdialog(title: 'As senhas inseridas são diferentes.');
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         drawer: Navbar(),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -103,19 +83,38 @@ class EmployeeManagement extends StatelessWidget {
           ],
         ),
         extendBodyBehindAppBar: true,
-        body: BackgroundPage(
-          gradientColors: [Color(0xFF75CDF3), Color(0xFFB2E8FF)],
-          children: [
-            CustomHeader(title: "Funcionários"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /*Blocks(     Precisa do backend para funcionar.
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+              if (state is AuthAuthenticated) {
+                Navigator.pushNamed(context, homeRoute);
+              } else if (state is AuthError) {
+                Showdialog(
+                  title: 'Erro: ${state.message}',
+                );
+              }
+            }),
+            BlocListener<UsuarioBloc, UsuarioState>(listener: (context, state) {
+              if (state is UsuarioErrorState) {
+                Showdialog(
+                  title: 'Erro ao criar usuário: ${state.message}',
+                );
+              }
+            })
+          ],
+          child: BackgroundPage(
+            gradientColors: [Color(0xFF75CDF3), Color(0xFFB2E8FF)],
+            children: [
+              CustomHeader(title: "Funcionários"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /*Blocks(     Precisa do backend para funcionar.
                     color: Colors.white,
                     height: 97,
                     width: 321,
@@ -131,9 +130,10 @@ class EmployeeManagement extends StatelessWidget {
                         )
                   ),*/
 
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02),
 
-                    /*Blocks(        Precisa do backend para funcionar
+                      /*Blocks(        Precisa do backend para funcionar
                     color: Colors.white,
                     height: 97,
                     width: 321,
@@ -149,215 +149,232 @@ class EmployeeManagement extends StatelessWidget {
                         )
                   ),*/
 
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          //Logica do botão
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Showdialog(
-                                width: 463,
-                                height: 402,
-                                title: 'Novo funcionário',
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      InputTextField(
-                                        labelText: "Nome:",
-                                        hintText: "Nome do funcionário",
-                                        controller: _nomeController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02),
-                                      InputTextField(
-                                        labelText: "Setor:",
-                                        hintText: "Setor do funcionário",
-                                        controller: _setorController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02),
-                                      InputTextField(
-                                        type: 'email',
-                                        labelText: 'Email',
-                                        hintText: 'Email do funcionário',
-                                        controller: _emailController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02),
-                                      InputTextField(
-                                        labelText: "Nome de usuário:",
-                                        hintText:
-                                            "Nome de usuário do funcionário",
-                                        controller: _usuarioController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02),
-                                      InputTextField(
-                                        type: 'password',
-                                        labelText: 'Senha',
-                                        hintText: 'Senha para o funcionário',
-                                        controller: _senhaController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.08),
-                                      InputTextField(
-                                        type: 'confirmPassword',
-                                        labelText: "Confirmar senha:",
-                                        hintText:
-                                            "Confirme a senha para o funcionário",
-                                        controller: _confirmarSenhaController,
-                                      ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.08),
-                                      Positioned.fill(
-                                          child: Center(
-                                              child: RegisterButton(
-                                                  nomeController:
-                                                      _nomeController,
-                                                  usuarioController:
-                                                      _usuarioController,
-                                                  setorController:
-                                                      _setorController,
-                                                  emailController:
-                                                      _emailController,
-                                                  senhaController:
-                                                      _senhaController)))
-                                    ]),
-                              );
-                            },
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF015C98),
-                          padding: EdgeInsets.all(16),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(26)),
-                        ),
-                        child: Text(
-                          "Cadastrar funcionário",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(width: MediaQuery.of(context).size.height * 0.07),
-                Blocks(
-                    title: "Todos os funcionários",
-                    color: Colors.white,
-                    borderRadius: 26,
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        width: MediaQuery.of(context).size.height * 0.45,
-                        child: BlocBuilder<UsuarioBloc, UsuarioState>(
-                          builder: (context, state) {
-                            final funcionarios = state.databaseResponse;
-                            return ListView.builder(
-                              //Aqui vai o cards dos funcionarios cadastrados
-                              itemCount: funcionarios.length,
-                              itemBuilder: (context, index) {
-                                final funcionario = funcionarios[index];
-                                return FuncionarioCard(
-                                  nomeFuncionario:
-                                      funcionario['usuario'] ?? "Indisponível",
-                                  setor: funcionario['setor'] ?? "Indisponível",
-                                  status:
-                                      funcionario['status'] ?? "Indisponível",
-                                  email: funcionario['email'] ?? "Indisponível",
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.07,
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            //Logica do botão
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Showdialog(
+                                  width: 463,
+                                  height: 402,
+                                  title: 'Novo funcionário',
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        InputTextField(
+                                          labelText: "Nome:",
+                                          hintText: "Nome do funcionário",
+                                          controller: _nomeController,
+                                        ),
+                                        SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02),
+                                        InputTextField(
+                                          labelText: "Setor:",
+                                          hintText: "Setor do funcionário",
+                                          controller: _setorController,
+                                        ),
+                                        SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02),
+                                        InputTextField(
+                                          type: 'email',
+                                          labelText: 'Email',
+                                          hintText: 'Email do funcionário',
+                                          controller: _emailController,
+                                        ),
+                                        // SizedBox(
+                                        //     height: MediaQuery.of(context)
+                                        //             .size
+                                        //             .height *
+                                        //         0.02),
+                                        InputTextField(
+                                          labelText: "Nome de usuário:",
+                                          hintText:
+                                              "Nome de usuário do funcionário",
+                                          controller: _usuarioController,
+                                        ),
+                                        // SizedBox(
+                                        //     height: MediaQuery.of(context)
+                                        //             .size
+                                        //             .height *
+                                        //         0.02),
+                                        InputTextField(
+                                          type: 'password',
+                                          labelText: 'Senha',
+                                          hintText: 'Senha para o funcionário',
+                                          isPassword: true,
+                                          controller: _senhaController,
+                                        ),
+                                        // SizedBox(
+                                        //     height: MediaQuery.of(context)
+                                        //             .size
+                                        //             .height *
+                                        //         0.08),
+                                        //
+                                        Positioned.fill(
+                                            child: Center(
+                                                child: ElevatedButton(
+                                          onPressed: () {
+                                            final nome = _nomeController.text;
+                                            final setor = _setorController.text;
+                                            final usuario =
+                                                _usuarioController.text;
+                                            final email = _emailController.text;
+                                            final senha = _senhaController.text;
+
+                                            context.read<AuthBloc>().add(
+                                                SignUpEvent(
+                                                    email: email,
+                                                    password: senha));
+                                            context.read<UsuarioBloc>().add(
+                                                UsuarioCreate(
+                                                    nome,
+                                                    usuario,
+                                                    setor,
+                                                    email,
+                                                    'padrao',
+                                                    senha));
+
+                                            Navigator.pop(context);
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.green,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          22))),
+                                          child: Text("Concluir",
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                        )))
+                                      ]),
                                 );
                               },
                             );
                           },
-                        ))),
-                SizedBox(width: MediaQuery.of(context).size.height * 0.07),
-                Blocks(
-                    title: "Atividades em andamento",
-                    color: Colors.white,
-                    borderRadius: 26,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: Center(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF015C98),
+                            padding: EdgeInsets.all(16),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(26)),
+                          ),
+                          child: Text(
+                            "Cadastrar funcionário",
+                            style: TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.height * 0.07),
+                  Blocks(
+                      title: "Todos os funcionários",
+                      color: Colors.white,
+                      borderRadius: 26,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          width: MediaQuery.of(context).size.height * 0.45,
+                          child: BlocBuilder<UsuarioBloc, UsuarioState>(
+                            builder: (context, state) {
+                              final funcionarios = state.databaseResponse;
+                              return ListView.builder(
+                                //Aqui vai o cards dos funcionarios cadastrados
+                                itemCount: funcionarios.length,
+                                itemBuilder: (context, index) {
+                                  final funcionario = funcionarios[index];
+                                  return FuncionarioCard(
+                                    nomeFuncionario: funcionario['usuario'] ??
+                                        "Indisponível",
+                                    setor:
+                                        funcionario['setor'] ?? "Indisponível",
+                                    status:
+                                        funcionario['status'] ?? "Indisponível",
+                                    email:
+                                        funcionario['email'] ?? "Indisponível",
+                                  );
+                                },
+                              );
+                            },
+                          ))),
+                  SizedBox(width: MediaQuery.of(context).size.height * 0.07),
+                  Blocks(
+                      title: "Atividades em andamento",
+                      color: Colors.white,
+                      borderRadius: 26,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Center(
+                              child: Text(
+                                "Setor de Cobertura",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              width: MediaQuery.of(context).size.height * 0.5,
+                              child: ListView.builder(
+                                //Aqui vai o card das atividades em andamento (Corte)
+                                itemCount: ativAndamento.length,
+                                itemBuilder: (context, index) {
+                                  final atividade = ativAndamento[index];
+                                  return AtivAndamentoCard(
+                                    nomeFuncionario: atividade['nome']!,
+                                    nomeDemanda: atividade['demanda']!,
+                                  );
+                                },
+                              )),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.03),
+                          Center(
                             child: Text(
-                              "Setor de Cobertura",
+                              "Setor de Aplique",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black,
                               ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.height * 0.5,
-                            child: ListView.builder(
-                              //Aqui vai o card das atividades em andamento (Corte)
-                              itemCount: ativAndamento.length,
-                              itemBuilder: (context, index) {
-                                final atividade = ativAndamento[index];
-                                return AtivAndamentoCard(
-                                  nomeFuncionario: atividade['nome']!,
-                                  nomeDemanda: atividade['demanda']!,
-                                );
-                              },
-                            )),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.03),
-                        Center(
-                          child: Text(
-                            "Setor de Aplique",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.3,
-                            width: MediaQuery.of(context).size.height * 0.5,
-                            child: ListView.builder(
-                              //Aqui vai os cards das atividades em andamento (Montagem)
-                              itemCount: ativAndamento.length,
-                              itemBuilder: (context, index) {
-                                final atividade = ativAndamento[index];
-                                return AtivAndamentoCard(
-                                  nomeFuncionario: atividade['nome']!,
-                                  nomeDemanda: atividade['demanda']!,
-                                );
-                              },
-                            )),
-                      ],
-                    ))
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                          SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.height * 0.5,
+                              child: ListView.builder(
+                                //Aqui vai os cards das atividades em andamento (Montagem)
+                                itemCount: ativAndamento.length,
+                                itemBuilder: (context, index) {
+                                  final atividade = ativAndamento[index];
+                                  return AtivAndamentoCard(
+                                    nomeFuncionario: atividade['nome']!,
+                                    nomeDemanda: atividade['demanda']!,
+                                  );
+                                },
+                              )),
+                        ],
+                      ))
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

@@ -55,9 +55,9 @@ class QuadroPrioridadeState extends State<QuadroPrioridade> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //Botão alta prioridade
-            SizedBox(
-              width: 97,
-              height: 24,
+            Expanded(
+              // width: 97,
+              // height: 24,
               child: ElevatedButton(
                 onPressed: prioridadeAlta,
                 style: ElevatedButton.styleFrom(
@@ -75,13 +75,13 @@ class QuadroPrioridadeState extends State<QuadroPrioridade> {
             ),
 
             SizedBox(
-              width: 17,
+              width: 10,
             ),
 
             //Botão média prioridade
-            SizedBox(
-              width: 97,
-              height: 24,
+            Expanded(
+              // width: 97,
+              // height: 24,
               child: ElevatedButton(
                 onPressed: prioridadeMedia,
                 style: ElevatedButton.styleFrom(
@@ -99,13 +99,13 @@ class QuadroPrioridadeState extends State<QuadroPrioridade> {
             ),
 
             SizedBox(
-              width: 17,
+              width: 10,
             ),
 
             //Botão baixa prioridade
-            SizedBox(
-              width: 97,
-              height: 24,
+            Expanded(
+              // width: 97,
+              // height: 24,
               child: ElevatedButton(
                 onPressed: prioridadeBaixa,
                 style: ElevatedButton.styleFrom(

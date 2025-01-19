@@ -4,33 +4,37 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 @Injectable(as: IAuthenticationRepository)
 class AuthenticationRepository implements IAuthenticationRepository {
-  final GoTrueClient _supabaseAuth;
+  // final GoTrueClient _supabaseAuth;
+  final SupabaseClient _supabase;
   static const String _redirectUrl = 'br.com.fehu://signup-callback';
 
-  AuthenticationRepository(this._supabaseAuth);
+  AuthenticationRepository(this._supabase);
 
   @override
-  Future<void> signInWithEmailAndPassword({
+  Future<User?> signInWithEmailAndPassword({
     required String email,
     required String password,
-  }) async =>
-      await _supabaseAuth.signInWithPassword(password: password, email: email);
+  }) async {
+    final supabaseResponse = await _supabase.auth
+        .signInWithPassword(password: password, email: email);
+    return supabaseResponse.user;
+    // return _supabase.auth.currentUser;
+  }
 
   @override
-  Future<void> signUpWithEmailAndPassword({
+  Future<User?> signUpWithEmailAndPassword({
     required String email,
     required String password,
-  }) async =>
-      await _supabaseAuth.signUp(
-          password: password, email: email, emailRedirectTo: _redirectUrl);
+  }) async {
+    final supabaseResponse = await _supabase.auth.signUp(
+        password: password, email: email, emailRedirectTo: _redirectUrl);
+    return supabaseResponse.user;
+    // return _supabase.auth.currentUser;
+  }
 
   @override
-  Future<void> signOut() async => await _supabaseAuth.signOut();
+  Future<void> signOut() async => await _supabase.auth.signOut();
 
   @override
-  Stream<User?> getCurrentUser() =>
-      _supabaseAuth.onAuthStateChange.map((event) => event.session?.user);
-
-  @override
-  User? getSignedInUser() => _supabaseAuth.currentUser;
+  Future<User?> getCurrentUser() async => _supabase.auth.currentUser;
 }

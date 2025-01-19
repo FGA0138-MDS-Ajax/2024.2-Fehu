@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'package:catavento/bloc/login/login_bloc.dart';
+import 'package:catavento/bloc/auth/auth_bloc.dart';
+// import 'package:catavento/bloc/login/login_bloc.dart';
 import 'package:catavento/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,23 +17,23 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return BlocListener<LoginBloc, LoginState>(
-      listenWhen: (previous, current) => current.isSubmissionSuccessOrFailure(),
+    return BlocListener<AuthBloc, AuthState>(
+      // listenWhen: (previous, current) => current.isSubmissionSuccessOrFailure(),
       listener: (context, state) {
-        if (state.formSubmissionStatus == FormSubmissionStatus.success) {
+        if (state is AuthAuthenticated) {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => const LoadView()));
-        }
-        if (state.formSubmissionStatus == FormSubmissionStatus.failure) {
-          Showdialog(
-              title:
-                  'Falha de login. Por favor, verifique suas credenciais de acesso.');
+        } else if (state is AuthError) {
+          Showdialog(title: state.message);
         }
       },
       child: Scaffold(
@@ -73,49 +74,64 @@ class _LoginFormState extends State<LoginForm> {
                     Form(
                         child: Column(
                       children: [
-                        PurpleTextField(
-                          type: 'email',
-                          label: "Digite o seu e-mail de acesso",
-                          icon: Icon(
-                            Icons.person_outline,
-                            color: Color(0xCCACACAC),
-                          ),
-                        ),
+                        // PurpleTextField(
+                        //   type: 'email',
+                        //   label: "Digite o seu e-mail de acesso",
+                        //   icon: Icon(
+                        //     Icons.person_outline,
+                        //     color: Color(0xCCACACAC),
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 20,
                         ),
-                        PurpleTextField(
-                          type: 'password',
-                          label: "Digite a sua senha",
-                          icon: Icon(
-                            Icons.lock_outline,
-                            color: Color(0xCCACACAC),
-                          ),
+                        TextField(
+                            controller: _emailController,
+                            decoration: InputDecoration(labelText: 'E-mail')),
+                        SizedBox(
+                          height: 20,
                         ),
+                        TextField(
+                            controller: _passwordController,
+                            decoration: InputDecoration(labelText: 'Senha'),
+                            obscureText: true)
+                        // PurpleTextField(
+                        //   type: 'password',
+                        //   label: "Digite a sua senha",
+                        //   icon: Icon(
+                        //     Icons.lock_outline,
+                        //     color: Color(0xCCACACAC),
+                        //   ),
+                        // ),
                       ],
                     )),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(0, 50, 20, 0),
-                          child: ButtonSignIn(
-                            title: Text(
-                              "Entrar",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            isLoading: isLoading,
-                            icon: Icon(
-                              Icons.keyboard_arrow_right_rounded,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                isLoading = !isLoading;
-                              });
-                            },
-                          ),
-                        )
+                            margin: EdgeInsets.fromLTRB(0, 50, 20, 0),
+                            // child: ButtonSignIn(
+                            //   isLoading: isLoading,
+                            //   icon: Icon(
+                            //     Icons.keyboard_arrow_right_rounded,
+                            //     color: Colors.white,
+                            //   ),
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       isLoading = !isLoading;
+                            //     });
+                            //   },
+                            // ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                final email = _emailController.text;
+                                final password = _passwordController.text;
+                                context
+                                    .read<AuthBloc>()
+                                    .add(SignInEvent(email: email, password: password));
+                              },
+                              child: Text("Entrar"),
+                            ))
                       ],
                     )
                     //SizedBox(height: 35),

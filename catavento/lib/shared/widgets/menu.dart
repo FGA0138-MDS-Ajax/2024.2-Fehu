@@ -47,7 +47,7 @@ class Navbar extends StatelessWidget {
           ListTile(
             title: const Text('Sair da Conta'),
             onTap: () {
-              context.read<auth_bloc.AuthBloc>().add(auth_bloc.AuthLogoutButtonPressed());
+              context.read<auth_bloc.AuthBloc>().add(auth_bloc.SignOutEvent());
               Navigator.pushNamed(context, loginRoute);
             },
           ),

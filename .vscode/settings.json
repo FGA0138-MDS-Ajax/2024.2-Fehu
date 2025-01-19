@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/FlutterProjects/fehu/2024.2-Fehu/catavento/linux"
+  "cmake.sourceDirectory": "C:/FlutterProjects/fehu/2024.2-Fehu/catavento/linux",
+  "editor.formatOnSave": true
 }

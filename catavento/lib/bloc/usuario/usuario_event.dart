@@ -49,3 +49,5 @@ class UsuarioUpdate extends UsuarioEvent {
 }
 
 class UsuarioLoading extends UsuarioEvent {}
+
+class UsuerioError extends UsuarioEvent {}
